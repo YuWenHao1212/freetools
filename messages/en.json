@@ -1,0 +1,76 @@
+{
+  "Metadata": {
+    "siteTitle": "FreeTools.tw - Free Online Tools",
+    "siteDescription": "Free online productivity tools for everyone.",
+    "mdToFbTitle": "Facebook Post Formatter \u2014 Bold, Special Fonts, Line Breaks | FreeTools.tw",
+    "mdToFbDescription": "Free Facebook post formatting tool. Supports bold, italic, strikethrough, and monospace fonts. Preserves line breaks and spacing. One-click copy. Also supports Markdown syntax."
+  },
+  "Header": {
+    "imageTools": "Image Tools",
+    "videoTools": "Video Tools",
+    "textTools": "Text Tools",
+    "careerTools": "Career Tools"
+  },
+  "Footer": {
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "madeWith": "Made with",
+    "by": "by Yu-Wen Hao"
+  },
+  "MdToFb": {
+    "title": "Facebook Post Formatter",
+    "subtitle": "Bold, italic, special fonts, line break preservation \u2014 one-click copy",
+    "hint": "Bold works on English only (A-Z, 0-9). Chinese characters will remain unchanged.",
+    "hintLabel": "Tip:",
+    "howToUseTitle": "How to Format Facebook Posts?",
+    "steps": {
+      "step1Title": "Type or Paste Text",
+      "step1Desc": "Type text or paste Markdown in the left editor panel. Supports bold, italic, strikethrough, headings, lists, and quotes.",
+      "step2Title": "Copy & Paste",
+      "step2Desc": "Click the Copy button and paste the formatted text into your Facebook post. Done!"
+    },
+    "faqTitle": "FAQ",
+    "faqs": {
+      "q1": "Can you use bold or special fonts in Facebook posts?",
+      "a1": "Facebook doesn't support native rich-text formatting in regular posts. However, Unicode special characters can simulate bold, italic, strikethrough, and monospace effects. This tool automatically converts your text into these special fonts. It supports Markdown syntax and also accepts plain text.",
+      "q2": "Why don't Chinese characters show bold, italic, or other effects?",
+      "a2": "Unicode special fonts (bold, italic, strikethrough, monospace) only cover Latin letters (A-Z, a-z) and digits (0-9). Chinese, Japanese, and Korean characters have no Unicode styled variants, so they remain unchanged. This is a limitation of the Unicode standard, not the tool.",
+      "q3": "What formats are supported?",
+      "a3": "This tool supports headings (#), bold (**text**), italic (*text*), strikethrough (~~text~~), inline code (`code`), unordered lists (- item), ordered lists (1. item), and horizontal rules (---). It also automatically preserves line breaks and spacing. You can optionally enable automatic spacing between Chinese and English text.",
+      "q4": "Can I format AI-generated text for Facebook?",
+      "a4": "Yes. Text from AI tools like ChatGPT and Claude is typically in Markdown format (e.g. **bold**, - lists). Simply paste it into this tool to automatically convert it into Facebook-ready formatting \u2014 no need to manually remove asterisks or other markup."
+    },
+    "relatedToolsTitle": "Related Tools",
+    "relatedTools": {
+      "imageCompressor": "Image Compressor",
+      "imageCompressorDesc": "Compress images without losing quality, supports PNG / JPG / WebP.",
+      "jsonFormatter": "JSON Formatter",
+      "jsonFormatterDesc": "One-click format, validate, and beautify JSON data.",
+      "resumeAnalyzer": "Resume Analyzer",
+      "resumeAnalyzerDesc": "AI-powered resume analysis, get personalized improvement suggestions."
+    }
+  },
+  "Editor": {
+    "markdownInput": "Text Input (Markdown supported)",
+    "markdownHint": "Supports headings, bold, italic, strikethrough, lists, quotes",
+    "fbPreview": "FB Preview Output",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "panguLabel": "Auto Space",
+    "panguTooltip": "Automatically insert spaces between Chinese and English for better readability",
+    "placeholder": "Type or paste your text here...",
+    "previewPlaceholder": "Preview will appear here...",
+    "overLimitHint": "Consider splitting into multiple posts",
+    "boldHintLabel": "Tip:",
+    "boldHint": "Bold, italic, and strikethrough work on English only (A-Z, 0-9). Chinese characters will remain unchanged."
+  },
+  "Audit": {
+    "externalLinks": "External links reduce Facebook post reach. Consider placing links in the comments."
+  },
+  "LocaleSwitcher": {
+    "label": "Language",
+    "zh-TW": "\u4e2d\u6587",
+    "en": "EN"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "Metadata": {
+    "siteTitle": "FreeTools.tw - 免費線上工具",
+    "siteDescription": "免費線上生產力工具，人人都能用。",
+    "mdToFbTitle": "Facebook 貼文排版工具 — 粗體、特殊字體、空行保留 | FreeTools.tw",
+    "mdToFbDescription": "免費 Facebook 貼文排版工具。支援粗體、斜體、刪除線等特殊字體，自動保留換行與空行，一鍵複製貼上。也支援 Markdown 語法轉換。"
+  },
+  "Header": {
+    "imageTools": "圖片工具",
+    "videoTools": "影片工具",
+    "textTools": "文字工具",
+    "careerTools": "職涯工具"
+  },
+  "Footer": {
+    "about": "關於我們",
+    "privacy": "隱私權政策",
+    "terms": "服務條款",
+    "madeWith": "Made with",
+    "by": "by Yu-Wen Hao"
+  },
+  "MdToFb": {
+    "title": "Facebook 貼文排版工具",
+    "subtitle": "粗體、斜體、特殊字體、換行保留，一鍵複製貼上",
+    "hint": "粗體僅適用於英文（A-Z, 0-9），中文字將維持原樣。",
+    "hintLabel": "小提示：",
+    "howToUseTitle": "如何排版 Facebook 貼文？",
+    "steps": {
+      "step1Title": "輸入或貼上文字",
+      "step1Desc": "在左側編輯器中輸入文字或貼上 Markdown。支援粗體、斜體、刪除線、標題、列表和引用。",
+      "step2Title": "複製 & 貼上",
+      "step2Desc": "點擊複製按鈕，將排版好的文字貼到你的 Facebook 貼文中。完成！"
+    },
+    "faqTitle": "常見問題",
+    "faqs": {
+      "q1": "Facebook 貼文可以使用粗體或特殊字體嗎？",
+      "a1": "Facebook 一般貼文不支援原生富文字格式。但透過 Unicode 特殊字元可以模擬粗體、斜體、刪除線和等寬字體等效果。此工具會自動將文字轉換為這些特殊字體，支援 Markdown 語法，也可直接貼上純文字。",
+      "q2": "為什麼中文無法顯示粗體、斜體等效果？",
+      "a2": "Unicode 特殊字體（粗體、斜體、刪除線、等寬字體）僅涵蓋英文字母（A-Z, a-z）和數字（0-9）。中文字沒有對應的 Unicode 變體，因此會維持原樣。這是 Unicode 標準的限制，並非工具的問題。",
+      "q3": "支援哪些格式？",
+      "a3": "此工具支援標題（#）、粗體（**text**）、斜體（*text*）、刪除線（~~text~~）、行內程式碼（`code`）、無序列表（- item）、有序列表（1. item）和水平線（---）。同時自動保留換行與空行，並可選擇開啟中英文自動間距。",
+      "q4": "可以把 AI 產生的文字直接排版嗎？",
+      "a4": "可以。ChatGPT、Claude 等 AI 工具產生的文字通常是 Markdown 格式（例如 **粗體**、- 列表）。直接貼上到本工具，就能自動轉換為 Facebook 可用的排版格式，不需要手動移除星號或其他標記。"
+    },
+    "relatedToolsTitle": "相關工具",
+    "relatedTools": {
+      "imageCompressor": "圖片壓縮器",
+      "imageCompressorDesc": "無損壓縮圖片，支援 PNG / JPG / WebP。",
+      "jsonFormatter": "JSON 格式化工具",
+      "jsonFormatterDesc": "一鍵格式化、驗證和美化 JSON 資料。",
+      "resumeAnalyzer": "履歷分析器",
+      "resumeAnalyzerDesc": "AI 驅動的履歷分析，獲取個人化改善建議。"
+    }
+  },
+  "Editor": {
+    "markdownInput": "文字輸入（支援 Markdown）",
+    "markdownHint": "支援標題、粗體、斜體、刪除線、列表、引用",
+    "fbPreview": "FB 預覽輸出",
+    "copy": "複製",
+    "copied": "已複製！",
+    "panguLabel": "中英間距",
+    "panguTooltip": "在中文與英文之間自動加入半形空格，讓排版更易讀",
+    "placeholder": "在此輸入或貼上文字...",
+    "previewPlaceholder": "預覽將顯示在這裡...",
+    "overLimitHint": "建議拆分為多篇貼文",
+    "boldHintLabel": "小提示：",
+    "boldHint": "粗體、斜體、刪除線僅適用於英文（A-Z, 0-9），中文字將維持原樣。"
+  },
+  "Audit": {
+    "externalLinks": "外部連結會降低 Facebook 貼文觸及率。建議將連結放在留言區。"
+  },
+  "LocaleSwitcher": {
+    "label": "語言",
+    "zh-TW": "中文",
+    "en": "EN"
+  }
+}
