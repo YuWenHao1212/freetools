@@ -1,15 +1,19 @@
 {
   "Metadata": {
-    "siteTitle": "FreeTools.tw - 免費線上工具",
+    "siteTitle": "Neatoolkit - 免費線上工具",
     "siteDescription": "免費線上生產力工具，人人都能用。",
-    "mdToFbTitle": "Facebook 貼文排版工具 — 粗體、特殊字體、空行保留 | FreeTools.tw",
-    "mdToFbDescription": "免費 Facebook 貼文排版工具。支援粗體、斜體、刪除線等特殊字體，自動保留換行與空行，一鍵複製貼上。也支援 Markdown 語法轉換。"
+    "mdToFbTitle": "Facebook 貼文排版工具 — 粗體、特殊字體、空行保留 | Neatoolkit",
+    "mdToFbDescription": "免費 FB 貼文排版工具，支援粗體、斜體等特殊字體，自動保留換行與空行。ChatGPT、AI 文字一鍵轉換，複製貼到 FB、IG。也支援 Markdown 語法。",
+    "fontGeneratorTitle": "特殊字體產生器 — IG 字體轉換、可愛字體、質感英文字體一鍵複製 | Neatoolkit",
+    "fontGeneratorDescription": "免費線上特殊字體產生器，粗體、花體、哥德體、可愛字體等 15 種風格即時轉換。支援 IG 字體、FB 貼文、LINE 訊息，質感英文字體一鍵複製貼上，無需安裝 App。"
   },
   "Header": {
     "imageTools": "圖片工具",
     "videoTools": "影片工具",
     "textTools": "文字工具",
-    "careerTools": "職涯工具"
+    "careerTools": "職涯工具",
+    "fontGenerator": "特殊字體產生器",
+    "fbPostFormatter": "FB 貼文排版"
   },
   "Footer": {
     "about": "關於我們",
@@ -20,7 +24,7 @@
   },
   "MdToFb": {
     "title": "Facebook 貼文排版工具",
-    "subtitle": "粗體、斜體、特殊字體、換行保留，一鍵複製貼上",
+    "subtitle": "臉書貼文排版 \u2014 粗體、斜體、特殊字體、換行保留，一鍵複製貼上",
     "hint": "粗體僅適用於英文（A-Z, 0-9），中文字將維持原樣。",
     "hintLabel": "小提示：",
     "howToUseTitle": "如何排版 Facebook 貼文？",
@@ -39,14 +43,24 @@
       "q3": "支援哪些格式？",
       "a3": "此工具支援標題（#）、粗體（**text**）、斜體（*text*）、刪除線（~~text~~）、行內程式碼（`code`）、無序列表（- item）、有序列表（1. item）和水平線（---）。同時自動保留換行與空行，並可選擇開啟中英文自動間距。",
       "q4": "可以把 AI 產生的文字直接排版嗎？",
-      "a4": "可以。ChatGPT、Claude 等 AI 工具產生的文字通常是 Markdown 格式（例如 **粗體**、- 列表）。直接貼上到本工具，就能自動轉換為 Facebook 可用的排版格式，不需要手動移除星號或其他標記。"
+      "a4": "可以。ChatGPT、Claude 等 AI 工具產生的文字通常是 Markdown 格式（例如 **粗體**、- 列表）。直接貼上到本工具，就能自動轉換為 Facebook 可用的排版格式，不需要手動移除星號或其他標記。",
+      "q5": "FB 字體怎麼換？",
+      "a5": "Facebook 不支援自訂字體，但可透過 Unicode 特殊字元模擬粗體、斜體等效果。使用本工具或搭配「特殊字體產生器」，輸入文字即可轉換為多種 FB 字體風格。",
+      "q6": "FB 貼文怎麼換行？為什麼空行會消失？",
+      "a6": "Facebook 會自動移除多餘的空行。本工具透過插入零寬度空白字元，讓你的 FB 貼文保留完整的段落間距和換行，不需要手動處理。",
+      "q7": "這個工具也能用在 IG 排版嗎？",
+      "a7": "可以。本工具產生的粗體、斜體等特殊字體在 Instagram 貼文、限動和個人簡介中都能正常顯示。IG 排版和 IG 換行的效果也完全適用，複製貼上即可保留段落間距。",
+      "q8": "臉書貼文怎麼排版比較好看？",
+      "a8": "臉書貼文排版的關鍵在於：善用段落分隔（空行）讓文章易讀、重點文字用粗體突出、搭配清單條列重點。本工具可一次解決這些排版需求 \u2014 輸入 Markdown 或純文字，自動轉換為臉書可用的特殊字體格式，並保留換行與空行。",
+      "q9": "有推薦的 FB 貼文產生器嗎？",
+      "a9": "本工具就是一款免費的 FB 貼文產生器。輸入文字後自動產生粗體、斜體等格式化內容，支援 Markdown 語法和 AI 文字轉換，還能自動保留換行與中英間距。只要複製貼上就能發布排版精美的 Facebook 貼文。"
     },
     "relatedToolsTitle": "相關工具",
     "relatedTools": {
+      "fontGenerator": "特殊字體產生器",
+      "fontGeneratorDesc": "粗體、花體、哥德體、可愛字體等 15 種風格即時轉換，一鍵複製。",
       "imageCompressor": "圖片壓縮器",
       "imageCompressorDesc": "無損壓縮圖片，支援 PNG / JPG / WebP。",
-      "jsonFormatter": "JSON 格式化工具",
-      "jsonFormatterDesc": "一鍵格式化、驗證和美化 JSON 資料。",
       "resumeAnalyzer": "履歷分析器",
       "resumeAnalyzerDesc": "AI 驅動的履歷分析，獲取個人化改善建議。"
     }
@@ -67,6 +81,102 @@
   },
   "Audit": {
     "externalLinks": "外部連結會降低 Facebook 貼文觸及率。建議將連結放在留言區。"
+  },
+  "TextToolsNav": {
+    "fontGenerator": "特殊字體產生器",
+    "fbPostFormatter": "FB 貼文排版"
+  },
+  "FontGenerator": {
+    "title": "特殊字體產生器",
+    "subtitle": "粗體、花體、哥德體、質感英文字體等 15 種風格即時轉換，一鍵複製貼到 IG、FB、LINE",
+    "inputPlaceholder": "輸入文字...",
+    "hint": "英文字母和數字會轉換，中文保持原樣。",
+    "hintMixed": "中文字無法轉換為特殊字體（Unicode 標準限制），英文字母和數字會正常轉換。",
+    "hintAllCjk": "目前輸入皆為中文，請加入英文字母或數字以查看轉換效果。",
+    "exampleText": "Hello 你好 123",
+    "tip": "建議點綴使用，全文花體在手機上不易閱讀。",
+    "copy": "複製",
+    "copied": "已複製！",
+    "styles": {
+      "bold": "粗體",
+      "italic": "斜體",
+      "boldItalic": "粗斜體",
+      "boldScript": "粗花體",
+      "script": "草寫體",
+      "fraktur": "哥德體",
+      "doubleStruck": "空心字",
+      "circled": "圈圈字",
+      "squared": "方框字",
+      "parenthesized": "括號字",
+      "upsideDown": "顛倒字",
+      "strikethrough": "刪除線",
+      "underline": "底線",
+      "fullwidth": "全形",
+      "smallCaps": "小型大寫"
+    },
+    "whatIsTitle": "什麼是特殊字體？",
+    "whatIsContent": "特殊字體是利用 Unicode 數學符號字集，將一般英文字母和數字轉換為粗體（𝗕𝗼𝗹𝗱）、花體（𝓢𝓬𝓻𝓲𝓹𝓽）、空心字（𝕆𝕦𝕥𝕝𝕚𝕟𝕖）等視覺風格的文字。這款繁體中文特殊字體產生器可直接複製貼上到 Instagram、Facebook、LINE 等社群平台，不需要安裝字型或 App。",
+    "platformsTitle": "特殊字體可以用在哪些平台？",
+    "platforms": {
+      "igName": "Instagram",
+      "igDesc": "限動、個人簡介、貼文留言",
+      "fbName": "Facebook",
+      "fbDesc": "貼文、留言、社團",
+      "lineName": "LINE",
+      "lineDesc": "訊息、群組、個人狀態",
+      "twitterName": "Twitter / X",
+      "twitterDesc": "貼文、個人簡介",
+      "discordName": "Discord",
+      "discordDesc": "暱稱、訊息、伺服器介紹",
+      "otherName": "YouTube / TikTok",
+      "otherDesc": "留言、簡介等其他平台"
+    },
+    "platformsSummary": "貼文、限動、個人簡介、訊息、暱稱 — 所有支援 Unicode 的平台都能正常顯示。",
+    "vsFaqTitle": "特殊字體 vs 特殊符號",
+    "vsFont": "特殊字體",
+    "vsFontDesc": "將英文字母轉換為不同視覺風格，文字本身仍是字母，可被複製搜尋。",
+    "vsFontExample": "𝗛𝗲𝗹𝗹𝗼  𝓗𝓮𝓵𝓵𝓸  𝕳𝖊𝖑𝖑𝖔",
+    "vsSymbol": "特殊符號",
+    "vsSymbolDesc": "獨立的圖形符號，用於裝飾點綴，無法轉換自文字。",
+    "vsSymbolExample": "★ ♥ ✿ ➤ ♬ ☆ ✦ ◆",
+    "vsSummary": "兩者都能在社群平台使用，搭配效果更佳。",
+    "howToUseTitle": "如何使用特殊字體產生器？",
+    "steps": {
+      "step1Title": "輸入文字",
+      "step1Desc": "在上方輸入框輸入想要轉換的文字。支援英文字母、數字和中文混合輸入。",
+      "step2Title": "複製 & 貼上",
+      "step2Desc": "在喜歡的字體風格旁點擊「複製」按鈕，即可將特殊字體貼到 IG、FB、LINE 等社群平台。"
+    },
+    "faqTitle": "常見問題",
+    "faqs": {
+      "q1": "特殊字體可以用在哪裡？",
+      "a1": "Facebook 貼文、Instagram 簡介與限動、Twitter/X、LINE 訊息、Discord 等社群平台都可以使用。所有支援 Unicode 的平台都能正常顯示。",
+      "q2": "為什麼中文字沒有變化？",
+      "a2": "特殊字體利用 Unicode 數學符號字集，僅支援英文字母 (A-Z) 和數字 (0-9)。中文字會保持原樣顯示。建議搭配英文使用效果最佳。",
+      "q3": "FB 貼文可以打粗體嗎？",
+      "a3": "Facebook 不支援原生粗體格式，但可以使用 Unicode 特殊字體達成視覺上的粗體效果。本工具提供粗體、粗斜體等多種選擇。",
+      "q4": "手機上看得到特殊字體嗎？",
+      "a4": "大部分特殊字體在 iOS 和 Android 上都能正常顯示。少數罕見字體可能在部分裝置上顯示為方框。建議使用前先測試。",
+      "q5": "特殊字體會影響 SEO 或搜尋排名嗎？",
+      "a5": "Unicode 特殊字體無法被搜尋引擎正確索引，建議僅用於社群平台裝飾，不用於網站正文。",
+      "q6": "IG 限動怎麼換字體？",
+      "a6": "在本工具輸入文字，選擇喜歡的風格（如草寫體、哥德體），點擊複製後直接貼到 Instagram 限動文字框即可。不需要額外安裝 App。",
+      "q7": "怎麼打出質感英文字體？",
+      "a7": "使用本工具的草寫體（Script）或粗花體（Bold Script）風格，即可將英文轉換為優雅的質感字體。適合用於 IG 個人簡介或限動文字。",
+      "q8": "有推薦的可愛字體嗎？",
+      "a8": "圈圈字（Ⓒⓘⓡⓒⓛⓔⓓ）和括號字（⒞⒰⒯⒠）是最受歡迎的可愛風格。輸入文字後直接複製，就能用在社群貼文或訊息中。",
+      "q9": "特殊英文字體有哪些風格？",
+      "a9": "本工具提供 15 種風格，包括粗體、斜體、花體、草寫體、哥德體、空心字、圈圈字、方框字、括號字、顛倒字、刪除線、底線、全形、小型大寫等。每種都能即時預覽和一鍵複製。"
+    },
+    "relatedToolsTitle": "相關工具",
+    "relatedTools": {
+      "fbPostFormatter": "FB 貼文排版工具",
+      "fbPostFormatterDesc": "支援粗體、斜體、刪除線等特殊字體，Markdown 語法一鍵轉換。",
+      "imageCompressor": "圖片壓縮器",
+      "imageCompressorDesc": "無損壓縮圖片，支援 PNG / JPG / WebP。",
+      "bgRemover": "去背工具",
+      "bgRemoverDesc": "AI 驅動的一鍵去背，支援人物和物品。"
+    }
   },
   "LocaleSwitcher": {
     "label": "語言",

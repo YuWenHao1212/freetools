@@ -1599,3 +1599,54 @@ git push origin main
 - `npm run build` — passes with zero errors
 - Mobile (< 768px): hamburger visible, opens dropdown with links + locale switcher
 - Desktop (768px+): hamburger hidden, desktop nav unchanged
+
+---
+
+### Task 14: Font Generator — Full Implementation ✅
+
+**Goal:** Implement Phase 0a font generator at `/text/font-generator` with 10 Unicode font styles, shared text tools navigation, and header dropdown.
+
+**New files:**
+
+| File | Description |
+|------|-------------|
+| `src/components/font-generator/FontGenerator.tsx` | Main tool component (client). Single-line input, 10 preview rows, per-row copy, CJK visual differentiation, CSS text-decoration for strikethrough/underline |
+| `src/app/[locale]/text/font-generator/page.tsx` | Page entry (server). Hero, TextToolsNav, FontGenerator, SEO content (how-to + 5 FAQs), related tools |
+| `src/components/layout/TextToolsNav.tsx` | Shared tab bar for text tools (client). Real `<Link>` for SEO, `usePathname()` active state |
+| `src/components/layout/TextToolsDropdown.tsx` | Desktop header dropdown (client). Click toggle, click-outside-to-close, auto-close on route change |
+| `public/fonts/satoshi-400.woff2` | Self-hosted Satoshi font, weight 400 |
+| `public/fonts/satoshi-500.woff2` | Self-hosted Satoshi font, weight 500 |
+| `public/fonts/satoshi-700.woff2` | Self-hosted Satoshi font, weight 700 |
+
+**Modified files:**
+
+| File | Changes |
+|------|---------|
+| `src/lib/unicode-fonts.ts` | Extended from 4 to 14 font styles. Added `GeneratorFontStyle` type, offset configs (bold, italic, boldItalic, boldScript, doubleStruck), lookup tables (circled, smallCaps), combining chars (strikethrough, underline), fullwidth. Added `convertToUnicodeRich()` returning per-char `{ char, converted }` for visual differentiation. Added `isCjkChar()` export. |
+| `src/components/layout/Header.tsx` | Replaced flat "文字工具" link with `TextToolsDropdown`. Added `textToolItems` array. Updated `mobileNavLinks` with `subItems`. Nav links `text-sm` → `text-base`. |
+| `src/components/layout/MobileNav.tsx` | Extended `NavLink` interface with `subItems`. Parent with subItems renders as `<span>` + indented sub-links. |
+| `src/components/layout/Footer.tsx` | Copyright `text-xs` → `text-sm`. |
+| `src/app/[locale]/layout.tsx` | Font: Inter (Google) → Satoshi (local woff2) + Noto Sans TC (Google, CJK fallback). Kept Newsreader for serif. |
+| `src/app/globals.css` | `--font-sans`: updated to `var(--font-satoshi), var(--font-noto-sans-tc), system-ui, sans-serif` |
+| `src/app/[locale]/text/fb-post-formatter/page.tsx` | Added TextToolsNav. Updated related tools to link to font-generator. |
+| `messages/zh-TW.json` | Added: FontGenerator (19 keys), TextToolsNav (2), Metadata (2), Header (2) |
+| `messages/en.json` | Same additions as zh-TW |
+
+**Key implementation decisions:**
+
+| Decision | Rationale |
+|----------|-----------|
+| CSS `text-decoration` for preview, combining chars for copy | U+0336/U+0332 render as black blocks in Satoshi/Inter. CSS preview is clean; combining chars still used for clipboard to ensure social media compatibility. |
+| `convertToUnicodeRich()` per-char API | Enables visual differentiation — unconverted CJK chars rendered as `text-ink-600/30` (30% opacity), converted chars as `text-ink-900`. Users see the difference without reading any hint. |
+| Default example "Hello 你好 123" | Shows mixed-language conversion behavior at a glance when input is empty. |
+| TextToolsNav with real `<Link>` | SEO: crawlable links, not JS-only tabs. |
+| Satoshi font (self-hosted) | Brand consistency with yu-wenhao.com. `next/font/local` avoids external DNS lookup, fonts auto-preloaded. |
+| Low-key CJK hint (`text-ink-400`) | Replaced amber banner with subtle note. Visual differentiation (dimmed CJK) is the primary feedback; text hint is secondary. |
+
+**Verification:**
+- `npm run build` — passes with zero errors
+- All 10 font styles render correctly
+- CJK visual differentiation working (unconverted chars dimmed)
+- TextToolsNav switches between font-generator and fb-post-formatter
+- Header dropdown shows both text tools
+- Mobile hamburger menu shows text tools sub-items

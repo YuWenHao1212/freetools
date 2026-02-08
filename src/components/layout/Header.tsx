@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import LocaleSwitcher from "@/components/layout/LocaleSwitcher";
+import TextToolsDropdown from "@/components/layout/TextToolsDropdown";
 import MobileNav from "@/components/layout/MobileNav";
 
 export default async function Header() {
@@ -9,7 +10,23 @@ export default async function Header() {
   const navLinks = [
     { href: "#", label: t("imageTools") },
     { href: "#", label: t("videoTools") },
-    { href: "/text/fb-post-formatter", label: t("textTools"), active: true },
+    { href: "#", label: t("careerTools") },
+  ];
+
+  const textToolItems = [
+    { href: "/text/font-generator", label: t("fontGenerator") },
+    { href: "/text/fb-post-formatter", label: t("fbPostFormatter") },
+  ];
+
+  const mobileNavLinks = [
+    { href: "#", label: t("imageTools") },
+    { href: "#", label: t("videoTools") },
+    {
+      href: "/text/font-generator",
+      label: t("textTools"),
+      active: true,
+      subItems: textToolItems,
+    },
     { href: "#", label: t("careerTools") },
   ];
 
@@ -26,23 +43,24 @@ export default async function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
-          {navLinks.map(({ href, label, active }) => (
+          {navLinks.map(({ href, label }) => (
             <Link
               key={label}
               href={href}
-              className={
-                active
-                  ? "text-sm font-semibold text-ink-900"
-                  : "text-sm text-ink-600 hover:text-ink-900"
-              }
+              className="text-base text-ink-600 hover:text-ink-900"
             >
               {label}
             </Link>
           ))}
+          <TextToolsDropdown
+            label={t("textTools")}
+            items={textToolItems}
+            active
+          />
           <LocaleSwitcher />
         </nav>
 
-        <MobileNav navLinks={navLinks} />
+        <MobileNav navLinks={mobileNavLinks} />
       </div>
     </header>
   );

@@ -5,7 +5,7 @@ import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import TextToolsNav from "@/components/layout/TextToolsNav";
-import Editor from "@/components/fb-post-formatter/Editor";
+import FontGenerator from "@/components/font-generator/FontGenerator";
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -20,12 +20,12 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
   return {
-    title: t("mdToFbTitle"),
-    description: t("mdToFbDescription"),
+    title: t("fontGeneratorTitle"),
+    description: t("fontGeneratorDescription"),
   };
 }
 
-export default async function MdToFbPage({
+export default async function FontGeneratorPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -33,11 +33,19 @@ export default async function MdToFbPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = await getTranslations("MdToFb");
+  const t = await getTranslations("FontGenerator");
 
   const steps = [
-    { number: 1, title: t("steps.step1Title"), description: t("steps.step1Desc") },
-    { number: 2, title: t("steps.step2Title"), description: t("steps.step2Desc") },
+    {
+      number: 1,
+      title: t("steps.step1Title"),
+      description: t("steps.step1Desc"),
+    },
+    {
+      number: 2,
+      title: t("steps.step2Title"),
+      description: t("steps.step2Desc"),
+    },
   ];
 
   const faqs = [
@@ -52,11 +60,20 @@ export default async function MdToFbPage({
     { question: t("faqs.q9"), answer: t("faqs.a9") },
   ];
 
+  const platforms = [
+    { name: t("platforms.igName"), desc: t("platforms.igDesc") },
+    { name: t("platforms.fbName"), desc: t("platforms.fbDesc") },
+    { name: t("platforms.lineName"), desc: t("platforms.lineDesc") },
+    { name: t("platforms.twitterName"), desc: t("platforms.twitterDesc") },
+    { name: t("platforms.discordName"), desc: t("platforms.discordDesc") },
+    { name: t("platforms.otherName"), desc: t("platforms.otherDesc") },
+  ];
+
   const relatedTools = [
     {
-      href: "/text/font-generator",
-      title: t("relatedTools.fontGenerator"),
-      description: t("relatedTools.fontGeneratorDesc"),
+      href: "/text/fb-post-formatter",
+      title: t("relatedTools.fbPostFormatter"),
+      description: t("relatedTools.fbPostFormatterDesc"),
     },
     {
       href: "#",
@@ -65,8 +82,8 @@ export default async function MdToFbPage({
     },
     {
       href: "#",
-      title: t("relatedTools.resumeAnalyzer"),
-      description: t("relatedTools.resumeAnalyzerDesc"),
+      title: t("relatedTools.bgRemover"),
+      description: t("relatedTools.bgRemoverDesc"),
     },
   ];
 
@@ -112,49 +129,111 @@ export default async function MdToFbPage({
         {/* Tool Section */}
         <section className="pb-12">
           <div className="mx-auto max-w-7xl px-6 2xl:max-w-[1600px]">
-            <Editor />
+            <FontGenerator />
           </div>
         </section>
 
-        {/* SEO Content */}
+        {/* SEO info — 3-column grid */}
         <section className="bg-cream-200 py-16">
           <div className="mx-auto max-w-7xl px-6 2xl:max-w-[1600px]">
-            {/* How to Use */}
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {/* What Is */}
+              <div className="rounded-2xl border border-border bg-white p-7">
+                <h2 className="font-serif text-2xl font-bold text-ink-900">
+                  {t("whatIsTitle")}
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-ink-600">
+                  {t("whatIsContent")}
+                </p>
+              </div>
+
+              {/* Platforms */}
+              <div className="rounded-2xl border border-border bg-white p-7">
+                <h2 className="font-serif text-2xl font-bold text-ink-900">
+                  {t("platformsTitle")}
+                </h2>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {platforms.map(({ name }) => (
+                    <span
+                      key={name}
+                      className="rounded-full border border-border px-4 py-1.5 text-sm font-medium text-ink-700"
+                    >
+                      {name}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-ink-500">
+                  {t("platformsSummary")}
+                </p>
+              </div>
+
+              {/* vs comparison */}
+              <div className="rounded-2xl border border-border bg-white p-7 md:col-span-2 lg:col-span-1">
+                <h2 className="font-serif text-2xl font-bold text-ink-900">
+                  {t("vsFaqTitle")}
+                </h2>
+                <div className="mt-4 grid grid-cols-2 gap-3">
+                  <div className="rounded-xl bg-accent/5 p-4">
+                    <p className="text-sm font-semibold text-ink-900">{t("vsFont")}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{t("vsFontDesc")}</p>
+                    <p className="mt-3 select-all truncate text-base text-ink-800">
+                      {t("vsFontExample")}
+                    </p>
+                  </div>
+                  <div className="rounded-xl bg-ink-50 p-4">
+                    <p className="text-sm font-semibold text-ink-900">{t("vsSymbol")}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{t("vsSymbolDesc")}</p>
+                    <p className="mt-3 select-all truncate text-base text-ink-800">
+                      {t("vsSymbolExample")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How to Use + FAQ */}
+        <section className="bg-cream-200 py-16">
+          <div className="mx-auto max-w-7xl px-6 2xl:max-w-[1600px]">
+            {/* How to Use — horizontal numbered steps */}
             <h2 className="text-center font-serif text-2xl font-bold text-ink-900 md:text-3xl">
               {t("howToUseTitle")}
             </h2>
-
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {steps.map(({ number, title, description }) => (
                 <div
                   key={number}
-                  className="rounded-xl bg-white p-6 shadow-sm"
+                  className="flex gap-4 rounded-2xl bg-white p-6 shadow-sm"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-sm font-bold text-white">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-white">
                     {number}
                   </div>
-                  <h3 className="mt-4 text-lg font-semibold text-ink-900 md:text-xl">
-                    {title}
-                  </h3>
-                  <p className="mt-2 text-base leading-relaxed text-ink-600">
-                    {description}
-                  </p>
+                  <div>
+                    <h3 className="text-lg font-semibold text-ink-900">
+                      {title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-600">
+                      {description}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
 
-            {/* FAQ */}
-            <h2 className="mt-16 text-center font-serif text-2xl font-bold text-ink-900 md:text-3xl">
+            {/* FAQ — 2-column grid */}
+            <h2 className="mt-20 text-center font-serif text-2xl font-bold text-ink-900 md:text-3xl">
               {t("faqTitle")}
             </h2>
-
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {faqs.map(({ question, answer }) => (
                 <div
                   key={question}
                   className="rounded-2xl bg-white p-5 shadow-sm"
                 >
-                  <h3 className="text-base font-semibold text-ink-900">{question}</h3>
+                  <h3 className="text-base font-semibold text-ink-900">
+                    {question}
+                  </h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-600">
                     {answer}
                   </p>

@@ -56,24 +56,31 @@ src/
 ├── app/
 │   ├── layout.tsx                    # Root layout (imports globals.css, delegates to [locale])
 │   └── [locale]/
-│       ├── layout.tsx                # Locale layout (HTML/body, fonts, i18n provider)
+│       ├── layout.tsx                # Locale layout (Satoshi + Noto Sans TC + Newsreader)
 │       ├── page.tsx                  # Home (redirects to fb-post-formatter)
 │       └── text/
-│           └── fb-post-formatter/
-│               └── page.tsx          # Page entry + i18n SEO meta + FAQ
+│           ├── fb-post-formatter/
+│           │   └── page.tsx          # FB formatter page + i18n SEO + FAQ
+│           └── font-generator/
+│               └── page.tsx          # Font generator page + i18n SEO + FAQ
 │
 ├── components/
 │   ├── fb-post-formatter/
 │   │   ├── Editor.tsx                # Two-column layout + state + style/pangu controls
 │   │   ├── MarkdownInput.tsx         # Left: textarea + backdrop highlighting
 │   │   └── FbPreview.tsx             # Right: preview + copy button + URL highlighting
+│   ├── font-generator/
+│   │   └── FontGenerator.tsx         # 10-style preview + per-row copy + CJK visual differentiation
 │   └── layout/
-│       ├── Header.tsx                # Navigation header
+│       ├── Header.tsx                # Navigation with TextToolsDropdown
 │       ├── Footer.tsx                # Footer with links
-│       └── LocaleSwitcher.tsx        # zh-TW / en toggle
+│       ├── LocaleSwitcher.tsx        # zh-TW / en toggle
+│       ├── MobileNav.tsx             # Mobile hamburger menu with subItems
+│       ├── TextToolsNav.tsx          # Shared tab bar (font-generator / fb-post-formatter)
+│       └── TextToolsDropdown.tsx     # Desktop dropdown for text tools
 │
 ├── lib/
-│   ├── unicode-fonts.ts              # Unicode offset table + exceptions + isCjkChar export
+│   ├── unicode-fonts.ts              # 14 Unicode font styles + convertToUnicodeRich() + isCjkChar
 │   ├── fb-renderer.ts               # marked custom renderer (core conversion, breaks: true)
 │   ├── symbol-configs.ts            # Three style symbol tables
 │   ├── post-process.ts              # ZWSP + Pangu pipeline (Unicode-aware regex)
@@ -87,9 +94,15 @@ src/
 │
 ├── middleware.ts                     # next-intl routing middleware
 │
+public/
+├── fonts/
+│   ├── satoshi-400.woff2             # Self-hosted Satoshi (regular)
+│   ├── satoshi-500.woff2             # Self-hosted Satoshi (medium)
+│   └── satoshi-700.woff2             # Self-hosted Satoshi (bold)
+│
 messages/
-├── zh-TW.json                        # 76 translation keys
-└── en.json                           # 76 translation keys
+├── zh-TW.json                        # ~100 translation keys
+└── en.json                           # ~100 translation keys
 ```
 
 ---
@@ -277,11 +290,23 @@ UI includes:
 - Desktop: side-by-side with MarkdownInput
 - Mobile: stacked below MarkdownInput
 
-### Layout Components (new)
+### FontGenerator.tsx (font generator tool)
 
-- **Header.tsx**: Navigation header with tool links
+- Single-line input (max 200 chars), 10 font style preview rows
+- Per-row copy button with "Copied!" flash (1.5s)
+- **CJK visual differentiation**: `convertToUnicodeRich()` returns per-char info; unconverted CJK chars rendered at `text-ink-600/30`, converted chars at `text-ink-900`
+- **CSS text-decoration**: Strikethrough/underline use CSS for clean preview, combining characters for clipboard copy
+- **Default example**: "Hello 你好 123" shown in `text-ink-400` when input is empty
+- **Dynamic CJK hint**: Low-key `text-ink-400` note, message changes based on CJK state (none/mixed/allCjk)
+
+### Layout Components
+
+- **Header.tsx**: Navigation header with TextToolsDropdown for "文字工具" sub-menu
 - **Footer.tsx**: Footer with "Made by" attribution + links
 - **LocaleSwitcher.tsx**: zh-TW / en language toggle
+- **MobileNav.tsx**: Hamburger menu for mobile, supports `subItems` nesting
+- **TextToolsNav.tsx**: Shared tab bar for text tool pages (real `<Link>` for SEO)
+- **TextToolsDropdown.tsx**: Desktop dropdown with click-toggle + outside-click-close
 
 ---
 

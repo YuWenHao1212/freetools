@@ -28,7 +28,7 @@
   --color-border: var(--border);
   --color-link: var(--link);
   --color-link-hover: var(--link-hover);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-satoshi), var(--font-noto-sans-tc), system-ui, sans-serif;
   --font-serif: var(--font-newsreader);
 }
 

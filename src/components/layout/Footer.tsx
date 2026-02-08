@@ -35,8 +35,8 @@ export default async function Footer() {
           {t("madeWith")} <span className="text-red-500">&#10084;</span> {t("by")}
         </p>
 
-        <p className="mt-1 text-xs text-ink-600/60">
-          &copy; {new Date().getFullYear()} FreeTools.tw
+        <p className="mt-1 text-sm text-ink-600/60">
+          &copy; {new Date().getFullYear()} Neatoolkit
         </p>
       </div>
     </footer>

@@ -3,12 +3,25 @@ import { hasLocale } from "next-intl";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
-import { Inter, Newsreader } from "next/font/google";
+import localFont from "next/font/local";
+import { Newsreader, Noto_Sans_TC } from "next/font/google";
 import { routing } from "@/i18n/routing";
 
-const inter = Inter({
-  variable: "--font-inter",
+const satoshi = localFont({
+  src: [
+    { path: "../../../public/fonts/satoshi-400.woff2", weight: "400" },
+    { path: "../../../public/fonts/satoshi-500.woff2", weight: "500" },
+    { path: "../../../public/fonts/satoshi-700.woff2", weight: "700" },
+  ],
+  variable: "--font-satoshi",
+  display: "swap",
+});
+
+const notoSansTC = Noto_Sans_TC({
+  variable: "--font-noto-sans-tc",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
 });
 
 const newsreader = Newsreader({
@@ -54,7 +67,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${inter.variable} ${newsreader.variable} antialiased`}
+        className={`${satoshi.variable} ${notoSansTC.variable} ${newsreader.variable} antialiased`}
       >
         <NextIntlClientProvider>
           {children}

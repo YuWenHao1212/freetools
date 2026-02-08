@@ -9,6 +9,7 @@ interface NavLink {
   href: string;
   label: string;
   active?: boolean;
+  subItems?: { href: string; label: string }[];
 }
 
 interface MobileNavProps {
@@ -77,18 +78,51 @@ export default function MobileNav({ navLinks }: MobileNavProps) {
           />
           <nav className="fixed left-0 right-0 top-[57px] z-50 border-b border-border bg-white px-6 py-4">
             <ul className="flex flex-col gap-1">
-              {navLinks.map(({ href, label, active }) => (
+              {navLinks.map(({ href, label, active, subItems }) => (
                 <li key={label}>
-                  <Link
-                    href={href}
-                    className={
-                      active
-                        ? "block rounded-md px-3 py-2.5 text-sm font-semibold text-ink-900 bg-ink-50"
-                        : "block rounded-md px-3 py-2.5 text-sm text-ink-600 hover:bg-ink-50 hover:text-ink-900"
-                    }
-                  >
-                    {label}
-                  </Link>
+                  {subItems ? (
+                    <div>
+                      <span
+                        className={
+                          active
+                            ? "block rounded-md px-3 py-2.5 text-sm font-semibold text-ink-900 bg-ink-50"
+                            : "block rounded-md px-3 py-2.5 text-sm text-ink-600"
+                        }
+                      >
+                        {label}
+                      </span>
+                      <ul className="ml-3 mt-1 flex flex-col gap-1">
+                        {subItems.map((sub) => {
+                          const isSubActive = pathname === sub.href;
+                          return (
+                            <li key={sub.href}>
+                              <Link
+                                href={sub.href}
+                                className={
+                                  isSubActive
+                                    ? "block rounded-md px-3 py-2 text-sm font-medium text-accent"
+                                    : "block rounded-md px-3 py-2 text-sm text-ink-500 hover:bg-ink-50 hover:text-ink-900"
+                                }
+                              >
+                                {sub.label}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ) : (
+                    <Link
+                      href={href}
+                      className={
+                        active
+                          ? "block rounded-md px-3 py-2.5 text-sm font-semibold text-ink-900 bg-ink-50"
+                          : "block rounded-md px-3 py-2.5 text-sm text-ink-600 hover:bg-ink-50 hover:text-ink-900"
+                      }
+                    >
+                      {label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
