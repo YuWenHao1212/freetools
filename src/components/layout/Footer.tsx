@@ -12,7 +12,7 @@ export default async function Footer() {
 
   return (
     <footer className="border-t border-border bg-cream-200">
-      <div className="mx-auto max-w-6xl px-6 py-8 text-center">
+      <div className="mx-auto max-w-7xl px-6 py-8 text-center 2xl:max-w-[1600px]">
         <nav className="flex items-center justify-center gap-2 text-sm">
           {footerLinks.map(({ href, label }, i) => (
             <span key={label} className="flex items-center gap-2">

@@ -71,7 +71,7 @@ export default async function MdToFbPage({
       <main className="flex-1">
         {/* Hero */}
         <section className="pb-6 pt-12 text-center">
-          <div className="mx-auto max-w-3xl px-6">
+          <div className="mx-auto max-w-4xl px-6 2xl:max-w-5xl">
             <h1 className="font-serif text-3xl font-bold leading-tight text-ink-900 md:text-4xl lg:text-5xl">
               {t("title")}
             </h1>
@@ -83,14 +83,14 @@ export default async function MdToFbPage({
 
         {/* Tool Section */}
         <section className="pb-12">
-          <div className="mx-auto max-w-5xl px-6">
+          <div className="mx-auto max-w-7xl px-6 2xl:max-w-[1600px]">
             <Editor />
           </div>
         </section>
 
         {/* SEO Content */}
         <section className="bg-cream-200 py-16">
-          <div className="mx-auto max-w-5xl px-6">
+          <div className="mx-auto max-w-7xl px-6 2xl:max-w-[1600px]">
             {/* How to Use */}
             <h2 className="text-center font-serif text-2xl font-bold text-ink-900 md:text-3xl">
               {t("howToUseTitle")}
@@ -138,7 +138,7 @@ export default async function MdToFbPage({
 
         {/* Related Tools */}
         <section className="py-16">
-          <div className="mx-auto max-w-5xl px-6">
+          <div className="mx-auto max-w-7xl px-6 2xl:max-w-[1600px]">
             <h2 className="text-center font-serif text-2xl font-bold text-ink-900 md:text-3xl">
               {t("relatedToolsTitle")}
             </h2>
