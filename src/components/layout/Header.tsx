@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import LocaleSwitcher from "@/components/layout/LocaleSwitcher";
+import MobileNav from "@/components/layout/MobileNav";
 
 export default async function Header() {
   const t = await getTranslations("Header");
@@ -14,7 +15,7 @@ export default async function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 2xl:max-w-[1600px]">
         <Link href="/" className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-md bg-accent font-serif text-lg font-bold text-white">
             F
@@ -40,6 +41,8 @@ export default async function Header() {
           ))}
           <LocaleSwitcher />
         </nav>
+
+        <MobileNav navLinks={navLinks} />
       </div>
     </header>
   );

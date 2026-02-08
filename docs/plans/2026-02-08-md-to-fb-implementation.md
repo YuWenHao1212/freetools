@@ -1549,6 +1549,7 @@ git push origin main
 | 10 | `page.tsx` | Next.js page + i18n SEO + FAQ | ✅ |
 | 11 | Integration tests | Full pipeline verification | ✅ |
 | 12 | Build & cleanup | Production build + push | ✅ |
+| 13 | `MobileNav.tsx` | Mobile hamburger menu for < 768px viewports | ✅ |
 
 ### Additional work not in original plan
 
@@ -1559,7 +1560,42 @@ git push origin main
 | `Header.tsx` / `Footer.tsx` / `LocaleSwitcher.tsx` | Layout components |
 | `fb-audit.ts` | External link detection module + tests |
 | Backdrop highlighting | CJK-in-markdown-markers visual warning |
+| `MobileNav.tsx` | Mobile hamburger menu (see Task 13 below) |
 
 **Total commits (actual):** 18 (12 original plan + 6 additional)
 **Dependencies added:** `marked`, `next-intl`, `vitest`, `@testing-library/react`, `@testing-library/jest-dom`
 **Tests:** 142 passing across 7 test files
+
+---
+
+### Task 13: Mobile Hamburger Menu ✅
+
+**Files:**
+- Created: `src/components/layout/MobileNav.tsx` (client component)
+- Modified: `src/components/layout/Header.tsx` (added MobileNav import + render)
+
+**Goal:** Add a hamburger menu for mobile viewports (< 768px) so users can access nav links and the language switcher on small screens.
+
+**Implementation details:**
+
+`MobileNav.tsx` — new `"use client"` component:
+- Receives `navLinks` as props (array of `{ href, label, active? }`)
+- `useState` for `isOpen` toggle
+- **Hamburger button**: 3-line SVG icon, switches to X (close) icon when open; `md:hidden` hides it on desktop
+- **Overlay**: Semi-transparent `bg-black/20` backdrop; clicking it closes the menu
+- **Dropdown menu**: Full-width panel positioned below header (`top-[57px]`) with:
+  - Vertically stacked nav links (with active state highlight `bg-ink-50`)
+  - `<LocaleSwitcher />` at the bottom, separated by a border
+- **Auto-close on navigation**: `useEffect` watches `usePathname()` and sets `isOpen(false)` on route change
+- **Body scroll lock**: Sets `document.body.style.overflow = "hidden"` when menu is open
+- **Accessibility**: `aria-expanded` and `aria-label` on toggle button
+
+`Header.tsx` changes:
+- Added `import MobileNav from "@/components/layout/MobileNav"`
+- Added `<MobileNav navLinks={navLinks} />` after the existing desktop `<nav>`
+- Desktop nav (`hidden md:flex`) unchanged
+
+**Verification:**
+- `npm run build` — passes with zero errors
+- Mobile (< 768px): hamburger visible, opens dropdown with links + locale switcher
+- Desktop (768px+): hamburger hidden, desktop nav unchanged
