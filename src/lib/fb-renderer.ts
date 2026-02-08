@@ -1,4 +1,4 @@
-import { marked, type Tokens } from "marked";
+import { marked, type Tokens, type RendererObject } from "marked";
 import { convertToUnicode } from "@/lib/unicode-fonts";
 import type { SymbolConfig } from "@/lib/symbol-configs";
 
@@ -20,7 +20,7 @@ export const convertMarkdownToFb = (
   markdown: string,
   config: SymbolConfig
 ): string => {
-  const renderer: Record<string, (token: Tokens.Generic) => string> = {
+  const renderer: RendererObject = {
     heading(token: Tokens.Heading) {
       const text = stripHtml(
         this.parser.parseInline(token.tokens)
@@ -74,13 +74,14 @@ export const convertMarkdownToFb = (
         const item = token.items[i];
         // Parse item content — items have tokens that may be
         // text (tight list) or paragraph (loose list)
-        const innerTokens = item.tokens[0]?.tokens ?? [];
+        const first = item.tokens[0] as { tokens?: Tokens.Generic[] } | undefined;
+        const innerTokens = first?.tokens ?? [];
         const text = stripHtml(
           this.parser.parseInline(innerTokens)
         );
 
         if (token.ordered) {
-          lines.push(config.orderedItem(token.start + i, text));
+          lines.push(config.orderedItem(Number(token.start) + i, text));
         } else {
           lines.push(config.listItem(text));
         }
@@ -131,8 +132,8 @@ export const convertMarkdownToFb = (
       return lines.join("\n") + "\n\n";
     },
 
-    text(token: Tokens.Text) {
-      if (token.tokens) {
+    text(token: Tokens.Text | Tokens.Escape) {
+      if ("tokens" in token && token.tokens) {
         return this.parser.parseInline(token.tokens);
       }
       return token.text;

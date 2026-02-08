@@ -3,7 +3,6 @@ import {
   STYLE_CONFIGS,
   DEFAULT_STYLE,
   type StyleName,
-  type SymbolConfig,
 } from "../symbol-configs";
 
 describe("symbol-configs", () => {
