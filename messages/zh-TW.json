@@ -10,8 +10,8 @@
     "imageCompressDescription": "免費線上圖片壓縮工具，支援 JPG、PNG、WebP 格式。快速壓縮圖片檔案大小，保持畫質，適合網頁、社群媒體和電子郵件使用。",
     "removeBackgroundTitle": "AI 去背工具 — 免費線上一鍵去背 | Neatoolkit",
     "removeBackgroundDescription": "免費線上去背工具，AI 自動偵測人物與物品，一鍵移除圖片背景。支援 JPG、PNG，適合電商、社群貼文、證件照使用。",
-    "videoCompressTitle": "影片壓縮工具 — 免費線上壓縮 MP4 影片 | Neatoolkit",
-    "videoCompressDescription": "免費線上影片壓縮工具，快速壓縮 MP4 影片大小，保持畫質。支援調整解析度與品質，適合 LINE、IG 限動、Email 分享。",
+    "videoCompressTitle": "線上壓縮影片 — 免費影片壓縮工具，手機也能用 | Neatoolkit",
+    "videoCompressDescription": "免費線上壓縮影片工具，iPhone、手機直接用瀏覽器壓縮 MP4 影片。免安裝任何 App，支援調整解析度與品質，適合 LINE、IG 限動、Email 分享。",
     "videoToGifTitle": "影片轉 GIF — 免費線上 MP4 轉 GIF 動圖 | Neatoolkit",
     "videoToGifDescription": "免費線上影片轉 GIF 工具，將 MP4 影片快速轉換為 GIF 動圖。支援自訂尺寸和幀率，適合製作社群貼文、聊天表情和教學動圖。"
   },
@@ -319,8 +319,8 @@
     }
   },
   "VideoCompress": {
-    "title": "影片壓縮工具",
-    "subtitle": "免費線上壓縮 MP4 影片，快速縮小檔案大小，保持畫質",
+    "title": "線上影片壓縮工具",
+    "subtitle": "免費線上壓縮影片，iPhone、手機直接開網頁即可壓縮 MP4，免安裝 App",
     "uploadLabel": "點擊或拖放影片上傳",
     "uploadHint": "支援 MP4、MOV、WebM，最大 100MB",
     "qualityLabel": "壓縮品質",
@@ -363,7 +363,13 @@
       "q4": "最大可以上傳多大的影片？",
       "a4": "單個影片最大支援 100MB。壓縮處理時間根據影片長度和解析度有所不同。",
       "q5": "上傳的影片會被保存嗎？",
-      "a5": "不會。所有影片在壓縮完成後立即從伺服器刪除，我們不會保存任何上傳的影片。"
+      "a5": "不會。所有影片在壓縮完成後立即從伺服器刪除，我們不會保存任何上傳的影片。",
+      "q6": "iPhone 或手機影片怎麼壓縮？",
+      "a6": "直接用 iPhone 或 Android 手機的瀏覽器（Safari、Chrome）打開本頁面，從相簿選擇影片上傳即可線上壓縮。完全免安裝任何 App，手機影片壓縮線上就能完成。",
+      "q7": "如何壓縮影片到最小？",
+      "a7": "選擇「小檔案」品質加上「480p」解析度，可以將影片壓縮到最小。例如一段 100MB 的影片，經過壓縮後通常可以縮小到原始大小的 10-30%。",
+      "q8": "這個影片壓縮工具需要安裝嗎？",
+      "a8": "不需要。這是一款免安裝的線上影片壓縮工具，打開網頁就能直接使用。支援電腦、手機、平板等所有裝置，不需要下載任何軟體或 App。"
     },
     "relatedToolsTitle": "相關工具",
     "relatedTools": {

@@ -10,8 +10,8 @@
     "imageCompressDescription": "Free online image compressor. Compress JPG, PNG, and WebP images to reduce file size in KB while maintaining quality. Perfect for websites, social media, and email attachments.",
     "removeBackgroundTitle": "AI Background Remover — Free Online Background Removal | Neatoolkit",
     "removeBackgroundDescription": "Free online AI background remover. Automatically detect and remove image backgrounds with one click. Change photo background for e-commerce, social media, and ID photos.",
-    "videoCompressTitle": "Video Compressor — Free Online MP4 Video Compression | Neatoolkit",
-    "videoCompressDescription": "Free online video compression tool. Quickly compress MP4 videos while maintaining quality. Adjust resolution and quality for LINE, Instagram Stories, and email sharing.",
+    "videoCompressTitle": "Video Compressor Online — Free MP4 Compression, Works on Phone | Neatoolkit",
+    "videoCompressDescription": "Free online video compressor. Compress MP4 videos from iPhone or any phone directly in your browser. No app needed — adjust resolution and quality for LINE, Instagram Stories, and email.",
     "videoToGifTitle": "Video to GIF — Free Online MP4 to GIF Converter | Neatoolkit",
     "videoToGifDescription": "Free online video to GIF converter. Convert MP4 videos to animated GIFs quickly. Customize size and frame rate for social media posts, chat stickers, and tutorials."
   },
@@ -319,8 +319,8 @@
     }
   },
   "VideoCompress": {
-    "title": "Video Compressor",
-    "subtitle": "Free online MP4 video compression — reduce file size while keeping quality",
+    "title": "Online Video Compressor",
+    "subtitle": "Free online video compression — works on iPhone, Android & desktop, no app needed",
     "uploadLabel": "Click or drag & drop to upload",
     "uploadHint": "Supports MP4, MOV, WebM up to 100MB",
     "qualityLabel": "Compression Quality",
@@ -363,7 +363,13 @@
       "q4": "What is the maximum upload size?",
       "a4": "Each video can be up to 100MB. Processing time varies based on video length and resolution.",
       "q5": "Are uploaded videos stored?",
-      "a5": "No. All videos are deleted from the server immediately after compression. We do not store any uploaded videos."
+      "a5": "No. All videos are deleted from the server immediately after compression. We do not store any uploaded videos.",
+      "q6": "Can I compress videos on iPhone or Android?",
+      "a6": "Yes! Open this page in your phone's browser (Safari, Chrome), select a video from your camera roll, and compress it directly online. No app installation needed.",
+      "q7": "How do I compress a video to the smallest size?",
+      "a7": "Choose Small File quality with 480p resolution for maximum compression. A 100MB video can typically be reduced to 10-30% of its original size.",
+      "q8": "Do I need to install anything?",
+      "a8": "No installation required. This is a browser-based online video compressor that works on any device — desktop, phone, or tablet. Just open the page and start compressing."
     },
     "relatedToolsTitle": "Related Tools",
     "relatedTools": {
