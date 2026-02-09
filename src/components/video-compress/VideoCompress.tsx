@@ -52,6 +52,13 @@ function captureVideoThumbnail(file: File): Promise<string | null> {
   });
 }
 
+function estimateCompressTime(fileSizeMB: number): number {
+  // Baseline: ~2.3 seconds per MB (based on 19MB -> 43s at 4 vCPU with auto 720p)
+  const secondsPerMB = 2.3;
+  const estimated = Math.ceil(fileSizeMB * secondsPerMB);
+  return Math.max(10, estimated);
+}
+
 export default function VideoCompress() {
   const t = useTranslations("VideoCompress");
 
@@ -174,7 +181,7 @@ export default function VideoCompress() {
           {!file ? (
             <UploadZone
               accept="video/mp4,video/quicktime,video/webm"
-              maxSize={200 * 1024 * 1024}
+              maxSize={100 * 1024 * 1024}
               label={t("uploadLabel")}
               hint={t("uploadHint")}
               onFile={handleFile}
@@ -232,7 +239,9 @@ export default function VideoCompress() {
               <div className="flex flex-1 flex-col items-center justify-center rounded-xl border-2 border-dashed border-border bg-cream-200/30">
                 <div className="h-8 w-8 animate-spin rounded-full border-3 border-accent border-t-transparent" />
                 <p className="mt-4 text-sm text-ink-600">{t("compressing")}</p>
-                <p className="mt-1 text-xs text-ink-400">{elapsed}s</p>
+                <p className="mt-1 text-xs text-ink-400">
+                  {elapsed}s / {t("estimatedTime", { seconds: file ? estimateCompressTime(file.size / (1024 * 1024)) : 0 })}
+                </p>
               </div>
               <div className="invisible mt-3">
                 <p className="text-sm">&nbsp;</p>

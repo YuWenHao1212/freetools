@@ -322,7 +322,7 @@
     "title": "Video Compressor",
     "subtitle": "Free online MP4 video compression — reduce file size while keeping quality",
     "uploadLabel": "Click or drag & drop to upload",
-    "uploadHint": "Supports MP4, MOV, WebM up to 200MB",
+    "uploadHint": "Supports MP4, MOV, WebM up to 100MB",
     "qualityLabel": "Compression Quality",
     "quality": {
       "low": "Small File",
@@ -333,6 +333,7 @@
     "resolutionOriginal": "Keep Original",
     "compressBtn": "Compress Video",
     "compressing": "Compressing...",
+    "estimatedTime": "~{seconds}s estimated",
     "originalSize": "Original",
     "compressedSize": "Compressed",
     "savings": "Savings",
@@ -345,7 +346,7 @@
     "howToUseTitle": "How to Compress Videos?",
     "steps": {
       "step1Title": "Upload Video",
-      "step1Desc": "Click the upload area or drag & drop your video file. Supports MP4, MOV, WebM up to 200MB.",
+      "step1Desc": "Click the upload area or drag & drop your video file. Supports MP4, MOV, WebM up to 100MB.",
       "step2Title": "Choose Settings",
       "step2Desc": "Select compression quality and max resolution. Balanced mode works best for most cases.",
       "step3Title": "Download",
@@ -360,7 +361,7 @@
       "q3": "Where can I use compressed videos?",
       "a3": "Perfect for sharing via LINE, Instagram Stories, email attachments, and website uploads. The MP4 output works on all platforms.",
       "q4": "What is the maximum upload size?",
-      "a4": "Each video can be up to 200MB. Processing time varies based on video length and resolution.",
+      "a4": "Each video can be up to 100MB. Processing time varies based on video length and resolution.",
       "q5": "Are uploaded videos stored?",
       "a5": "No. All videos are deleted from the server immediately after compression. We do not store any uploaded videos."
     },
@@ -378,7 +379,7 @@
     "title": "Video to GIF Converter",
     "subtitle": "Free online MP4 to GIF converter — customize size and frame rate",
     "uploadLabel": "Click or drag & drop to upload",
-    "uploadHint": "Supports MP4, MOV, WebM up to 200MB",
+    "uploadHint": "Supports MP4, MOV, WebM up to 100MB",
     "fpsLabel": "Frame Rate (FPS)",
     "widthLabel": "GIF Width",
     "convertBtn": "Convert to GIF",

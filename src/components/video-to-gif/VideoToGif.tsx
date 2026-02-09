@@ -90,7 +90,7 @@ export default function VideoToGif() {
       <div className="flex flex-col gap-6">
         <UploadZone
           accept="video/mp4,video/quicktime,video/webm"
-          maxSize={200 * 1024 * 1024}
+          maxSize={100 * 1024 * 1024}
           label={t("uploadLabel")}
           hint={t("uploadHint")}
           onFile={handleFile}

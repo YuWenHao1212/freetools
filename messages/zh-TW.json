@@ -322,7 +322,7 @@
     "title": "影片壓縮工具",
     "subtitle": "免費線上壓縮 MP4 影片，快速縮小檔案大小，保持畫質",
     "uploadLabel": "點擊或拖放影片上傳",
-    "uploadHint": "支援 MP4、MOV、WebM，最大 200MB",
+    "uploadHint": "支援 MP4、MOV、WebM，最大 100MB",
     "qualityLabel": "壓縮品質",
     "quality": {
       "low": "小檔案",
@@ -333,6 +333,7 @@
     "resolutionOriginal": "維持原始",
     "compressBtn": "開始壓縮",
     "compressing": "壓縮中...",
+    "estimatedTime": "預估 {seconds} 秒",
     "originalSize": "原始大小",
     "compressedSize": "壓縮後",
     "savings": "節省",
@@ -345,7 +346,7 @@
     "howToUseTitle": "如何壓縮影片？",
     "steps": {
       "step1Title": "上傳影片",
-      "step1Desc": "點擊上傳區域或拖放影片檔案，支援 MP4、MOV、WebM 格式，最大 200MB。",
+      "step1Desc": "點擊上傳區域或拖放影片檔案，支援 MP4、MOV、WebM 格式，最大 100MB。",
       "step2Title": "選擇壓縮設定",
       "step2Desc": "選擇壓縮品質和最大解析度。「平衡」模式適合大多數情境。",
       "step3Title": "下載壓縮影片",
@@ -360,7 +361,7 @@
       "q3": "壓縮後的影片可以用在哪裡？",
       "a3": "適合用於 LINE 傳送、IG 限動、Email 附件、網站上傳等。壓縮後的 MP4 在所有平台都能正常播放。",
       "q4": "最大可以上傳多大的影片？",
-      "a4": "單個影片最大支援 200MB。壓縮處理時間根據影片長度和解析度有所不同。",
+      "a4": "單個影片最大支援 100MB。壓縮處理時間根據影片長度和解析度有所不同。",
       "q5": "上傳的影片會被保存嗎？",
       "a5": "不會。所有影片在壓縮完成後立即從伺服器刪除，我們不會保存任何上傳的影片。"
     },
@@ -378,7 +379,7 @@
     "title": "影片轉 GIF",
     "subtitle": "免費將 MP4 影片轉換為 GIF 動圖，支援自訂尺寸和幀率",
     "uploadLabel": "點擊或拖放影片上傳",
-    "uploadHint": "支援 MP4、MOV、WebM，最大 200MB",
+    "uploadHint": "支援 MP4、MOV、WebM，最大 100MB",
     "fpsLabel": "幀率 (FPS)",
     "widthLabel": "GIF 寬度",
     "convertBtn": "轉換為 GIF",
