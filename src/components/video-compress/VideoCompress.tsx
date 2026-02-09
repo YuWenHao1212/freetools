@@ -15,7 +15,13 @@ interface CompressResult {
   compressedSize: number;
 }
 
-function captureVideoThumbnail(file: File): Promise<string | null> {
+interface VideoMeta {
+  thumbnail: string | null;
+  width: number;
+  height: number;
+}
+
+function captureVideoMeta(file: File): Promise<VideoMeta> {
   return new Promise((resolve) => {
     const video = document.createElement("video");
     video.preload = "metadata";
@@ -30,24 +36,26 @@ function captureVideoThumbnail(file: File): Promise<string | null> {
     };
 
     video.onseeked = () => {
+      const w = video.videoWidth;
+      const h = video.videoHeight;
       const canvas = document.createElement("canvas");
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
+      canvas.width = w;
+      canvas.height = h;
       const ctx = canvas.getContext("2d");
       if (ctx) {
         ctx.drawImage(video, 0, 0);
         const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
         URL.revokeObjectURL(objectUrl);
-        resolve(dataUrl);
+        resolve({ thumbnail: dataUrl, width: w, height: h });
       } else {
         URL.revokeObjectURL(objectUrl);
-        resolve(null);
+        resolve({ thumbnail: null, width: w, height: h });
       }
     };
 
     video.onerror = () => {
       URL.revokeObjectURL(objectUrl);
-      resolve(null);
+      resolve({ thumbnail: null, width: 0, height: 0 });
     };
   });
 }
@@ -64,6 +72,7 @@ export default function VideoCompress() {
 
   const [file, setFile] = useState<File | null>(null);
   const [thumbnail, setThumbnail] = useState<string | null>(null);
+  const [videoDimensions, setVideoDimensions] = useState<{ w: number; h: number } | null>(null);
   const [quality, setQuality] = useState<Quality>("medium");
   const [resolution, setResolution] = useState<string>("");
   const [status, setStatus] = useState<Status>("idle");
@@ -80,9 +89,13 @@ export default function VideoCompress() {
     setErrorMsg("");
     setIsWarmingUp(false);
     setThumbnail(null);
+    setVideoDimensions(null);
 
-    const thumb = await captureVideoThumbnail(f);
-    setThumbnail(thumb);
+    const meta = await captureVideoMeta(f);
+    setThumbnail(meta.thumbnail);
+    if (meta.width > 0) {
+      setVideoDimensions({ w: meta.width, h: meta.height });
+    }
   }, []);
 
   const handleCompress = useCallback(async () => {
@@ -139,6 +152,7 @@ export default function VideoCompress() {
     if (result?.url) URL.revokeObjectURL(result.url);
     setFile(null);
     setThumbnail(null);
+    setVideoDimensions(null);
     setResult(null);
     setStatus("idle");
     setErrorMsg("");
@@ -208,6 +222,7 @@ export default function VideoCompress() {
                 <p className="truncate text-sm font-medium text-ink-900">{file.name}</p>
                 <p className="mt-0.5 text-xs text-ink-500">
                   {formatFileSize(file.size)}
+                  {videoDimensions && ` \u00B7 ${videoDimensions.w} x ${videoDimensions.h}`}
                 </p>
               </div>
             </div>
@@ -358,8 +373,8 @@ export default function VideoCompress() {
                   </label>
                   <div className="flex gap-2">
                     {[
-                      { value: "", label: t("resolutionOriginal") },
-                      { value: "720p", label: "720p" },
+                      { value: "1080p", label: "1080p" },
+                      { value: "", label: "720p" },
                       { value: "480p", label: "480p" },
                     ].map(({ value, label }) => (
                       <button
