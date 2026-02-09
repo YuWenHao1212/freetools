@@ -65,8 +65,11 @@ function estimateCompressTime(
   quality: Quality,
   resolution: string,
 ): number {
-  // Baseline: 19MB, medium quality, 720p (auto) -> 30s on 4 vCPU
-  const baseSecondsPerMB = 1.6;
+  // Fixed overhead: upload + ffprobe + response streaming (~15s for ~20MB)
+  const overhead = Math.max(5, Math.ceil(fileSizeMB * 0.8));
+
+  // Encoding rate per MB (calibrated: 19MB medium 720p -> 30s total)
+  const encodingRatePerMB = 0.68;
 
   // Quality multiplier: ultrafast is ~2x faster than fast
   const qualityMultiplier: Record<Quality, number> = {
@@ -84,8 +87,8 @@ function estimateCompressTime(
 
   const qMul = qualityMultiplier[quality];
   const rMul = resolutionMultiplier[resolution] ?? 1.0;
-  const estimated = Math.ceil(fileSizeMB * baseSecondsPerMB * qMul * rMul);
-  return Math.max(5, estimated);
+  const encoding = fileSizeMB * encodingRatePerMB * qMul * rMul;
+  return Math.max(5, Math.ceil(overhead + encoding));
 }
 
 export default function VideoCompress() {
