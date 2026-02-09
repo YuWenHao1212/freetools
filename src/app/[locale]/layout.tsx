@@ -44,8 +44,17 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
   return {
+    metadataBase: new URL("https://neatoolkit.com"),
     title: t("siteTitle"),
     description: t("siteDescription"),
+    openGraph: {
+      type: "website",
+      siteName: "Neatoolkit",
+      locale: locale === "zh-TW" ? "zh_TW" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
   };
 }
 

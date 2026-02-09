@@ -22,6 +22,18 @@ export async function generateMetadata({
   return {
     title: t("videoCompressTitle"),
     description: t("videoCompressDescription"),
+    openGraph: {
+      title: t("videoCompressTitle"),
+      description: t("videoCompressDescription"),
+      url: `/${locale}/video/compress`,
+    },
+    alternates: {
+      canonical: `/${locale}/video/compress`,
+      languages: {
+        "zh-TW": "/zh-TW/video/compress",
+        en: "/en/video/compress",
+      },
+    },
   };
 }
 

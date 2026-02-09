@@ -22,6 +22,18 @@ export async function generateMetadata({
   return {
     title: t("fontGeneratorTitle"),
     description: t("fontGeneratorDescription"),
+    openGraph: {
+      title: t("fontGeneratorTitle"),
+      description: t("fontGeneratorDescription"),
+      url: `/${locale}/text/font-generator`,
+    },
+    alternates: {
+      canonical: `/${locale}/text/font-generator`,
+      languages: {
+        "zh-TW": "/zh-TW/text/font-generator",
+        en: "/en/text/font-generator",
+      },
+    },
   };
 }
 

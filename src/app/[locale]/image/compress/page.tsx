@@ -22,6 +22,18 @@ export async function generateMetadata({
   return {
     title: t("imageCompressTitle"),
     description: t("imageCompressDescription"),
+    openGraph: {
+      title: t("imageCompressTitle"),
+      description: t("imageCompressDescription"),
+      url: `/${locale}/image/compress`,
+    },
+    alternates: {
+      canonical: `/${locale}/image/compress`,
+      languages: {
+        "zh-TW": "/zh-TW/image/compress",
+        en: "/en/image/compress",
+      },
+    },
   };
 }
 

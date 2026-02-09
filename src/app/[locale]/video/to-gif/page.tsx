@@ -22,6 +22,18 @@ export async function generateMetadata({
   return {
     title: t("videoToGifTitle"),
     description: t("videoToGifDescription"),
+    openGraph: {
+      title: t("videoToGifTitle"),
+      description: t("videoToGifDescription"),
+      url: `/${locale}/video/to-gif`,
+    },
+    alternates: {
+      canonical: `/${locale}/video/to-gif`,
+      languages: {
+        "zh-TW": "/zh-TW/video/to-gif",
+        en: "/en/video/to-gif",
+      },
+    },
   };
 }
 

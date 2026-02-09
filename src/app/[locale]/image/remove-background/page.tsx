@@ -22,6 +22,18 @@ export async function generateMetadata({
   return {
     title: t("removeBackgroundTitle"),
     description: t("removeBackgroundDescription"),
+    openGraph: {
+      title: t("removeBackgroundTitle"),
+      description: t("removeBackgroundDescription"),
+      url: `/${locale}/image/remove-background`,
+    },
+    alternates: {
+      canonical: `/${locale}/image/remove-background`,
+      languages: {
+        "zh-TW": "/zh-TW/image/remove-background",
+        en: "/en/image/remove-background",
+      },
+    },
   };
 }
 

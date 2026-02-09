@@ -20,6 +20,18 @@ export async function generateMetadata({
   return {
     title: t("siteTitle"),
     description: t("siteDescription"),
+    openGraph: {
+      title: t("siteTitle"),
+      description: t("siteDescription"),
+      url: `/${locale}`,
+    },
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        "zh-TW": "/zh-TW",
+        en: "/en",
+      },
+    },
   };
 }
 

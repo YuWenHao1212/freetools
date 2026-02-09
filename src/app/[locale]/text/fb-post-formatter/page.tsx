@@ -22,6 +22,18 @@ export async function generateMetadata({
   return {
     title: t("mdToFbTitle"),
     description: t("mdToFbDescription"),
+    openGraph: {
+      title: t("mdToFbTitle"),
+      description: t("mdToFbDescription"),
+      url: `/${locale}/text/fb-post-formatter`,
+    },
+    alternates: {
+      canonical: `/${locale}/text/fb-post-formatter`,
+      languages: {
+        "zh-TW": "/zh-TW/text/fb-post-formatter",
+        en: "/en/text/fb-post-formatter",
+      },
+    },
   };
 }
 
