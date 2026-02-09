@@ -295,6 +295,111 @@
       "fbPostFormatterDesc": "粗體、斜體等特殊字體，Markdown 語法一鍵轉換。"
     }
   },
+  "VideoCompress": {
+    "title": "影片壓縮工具",
+    "subtitle": "免費線上壓縮 MP4 影片，快速縮小檔案大小，保持畫質",
+    "uploadLabel": "點擊或拖放影片上傳",
+    "uploadHint": "支援 MP4、MOV、WebM，最大 200MB",
+    "qualityLabel": "壓縮品質",
+    "quality": {
+      "low": "小檔案",
+      "medium": "平衡",
+      "high": "高畫質"
+    },
+    "resolutionLabel": "最大解析度",
+    "resolutionOriginal": "維持原始",
+    "compressBtn": "開始壓縮",
+    "compressing": "壓縮中...",
+    "originalSize": "原始大小",
+    "compressedSize": "壓縮後",
+    "savings": "節省",
+    "download": "下載壓縮影片",
+    "reset": "重新上傳",
+    "retry": "重試",
+    "warmingUp": "伺服器正在啟動中，請稍候再試...",
+    "unknownError": "發生未知錯誤，請稍後再試。",
+    "resultPlaceholder": "壓縮結果將顯示在這裡",
+    "howToUseTitle": "如何壓縮影片？",
+    "steps": {
+      "step1Title": "上傳影片",
+      "step1Desc": "點擊上傳區域或拖放影片檔案，支援 MP4、MOV、WebM 格式，最大 200MB。",
+      "step2Title": "選擇壓縮設定",
+      "step2Desc": "選擇壓縮品質和最大解析度。「平衡」模式適合大多數情境。",
+      "step3Title": "下載壓縮影片",
+      "step3Desc": "壓縮完成後查看檔案大小變化，一鍵下載壓縮後的影片。"
+    },
+    "faqTitle": "常見問題",
+    "faqs": {
+      "q1": "影片壓縮會損失畫質嗎？",
+      "a1": "「高畫質」模式下畫質損失幾乎不可見。「平衡」模式在檔案大小和畫質之間取得最佳平衡。「小檔案」模式壓縮率最高，但畫質會有一定程度下降。",
+      "q2": "支援哪些影片格式？",
+      "a2": "支援 MP4、MOV（QuickTime）、WebM 格式。壓縮後統一輸出為 MP4 格式，相容性最佳。",
+      "q3": "壓縮後的影片可以用在哪裡？",
+      "a3": "適合用於 LINE 傳送、IG 限動、Email 附件、網站上傳等。壓縮後的 MP4 在所有平台都能正常播放。",
+      "q4": "最大可以上傳多大的影片？",
+      "a4": "單個影片最大支援 200MB。壓縮處理時間根據影片長度和解析度有所不同。",
+      "q5": "上傳的影片會被保存嗎？",
+      "a5": "不會。所有影片在壓縮完成後立即從伺服器刪除，我們不會保存任何上傳的影片。"
+    },
+    "relatedToolsTitle": "相關工具",
+    "relatedTools": {
+      "videoToGif": "影片轉 GIF",
+      "videoToGifDesc": "將 MP4 影片轉換為 GIF 動圖，支援自訂尺寸和幀率。",
+      "imageCompress": "圖片壓縮工具",
+      "imageCompressDesc": "壓縮 JPG、PNG、WebP 圖片，減小檔案大小。",
+      "removeBackground": "AI 去背工具",
+      "removeBackgroundDesc": "AI 自動去背，一鍵移除圖片背景。"
+    }
+  },
+  "VideoToGif": {
+    "title": "影片轉 GIF",
+    "subtitle": "免費將 MP4 影片轉換為 GIF 動圖，支援自訂尺寸和幀率",
+    "uploadLabel": "點擊或拖放影片上傳",
+    "uploadHint": "支援 MP4、MOV、WebM，最大 200MB",
+    "fpsLabel": "幀率 (FPS)",
+    "widthLabel": "GIF 寬度",
+    "convertBtn": "轉換為 GIF",
+    "converting": "轉換中...",
+    "originalSize": "原始大小",
+    "gifSize": "GIF 大小",
+    "download": "下載 GIF",
+    "reset": "重新上傳",
+    "retry": "重試",
+    "warmingUp": "伺服器正在啟動中，請稍候再試...",
+    "unknownError": "發生未知錯誤，請稍後再試。",
+    "resultPlaceholder": "GIF 預覽將顯示在這裡",
+    "howToUseTitle": "如何將影片轉為 GIF？",
+    "steps": {
+      "step1Title": "上傳影片",
+      "step1Desc": "點擊上傳區域或拖放影片檔案，支援 MP4、MOV、WebM 格式。",
+      "step2Title": "調整設定",
+      "step2Desc": "選擇幀率（FPS）和 GIF 寬度。較低的 FPS 和較小的寬度可以產生更小的 GIF 檔案。",
+      "step3Title": "下載 GIF",
+      "step3Desc": "預覽轉換結果並一鍵下載 GIF 動圖。"
+    },
+    "faqTitle": "常見問題",
+    "faqs": {
+      "q1": "GIF 和影片有什麼差別？",
+      "a1": "GIF 是一種動圖格式，支援自動循環播放，不需要播放器。適合用於聊天表情、教學說明和社群貼文。但 GIF 不支援音訊，檔案通常比影片大。",
+      "q2": "如何讓 GIF 檔案更小？",
+      "a2": "降低 FPS（例如 5-10）和 GIF 寬度（例如 320px）可以大幅減小檔案大小。較短的影片片段也會產生更小的 GIF。",
+      "q3": "GIF 可以用在哪些平台？",
+      "a3": "GIF 在幾乎所有平台都能正常顯示，包括 LINE、Slack、Discord、Email、網頁、社群媒體等。是分享動態內容最通用的格式。",
+      "q4": "影片多長比較適合轉 GIF？",
+      "a4": "建議 5-15 秒的片段最適合。超過 30 秒的影片轉換為 GIF 後檔案會很大，建議使用影片格式分享。",
+      "q5": "上傳的影片會被保存嗎？",
+      "a5": "不會。所有影片在轉換完成後立即從伺服器刪除，我們不會保存任何上傳的影片。"
+    },
+    "relatedToolsTitle": "相關工具",
+    "relatedTools": {
+      "videoCompress": "影片壓縮工具",
+      "videoCompressDesc": "壓縮 MP4 影片大小，保持畫質。",
+      "imageCompress": "圖片壓縮工具",
+      "imageCompressDesc": "壓縮 JPG、PNG、WebP 圖片，減小檔案大小。",
+      "removeBackground": "AI 去背工具",
+      "removeBackgroundDesc": "AI 自動去背，一鍵移除圖片背景。"
+    }
+  },
   "VideoToolsNav": {
     "videoCompress": "影片壓縮",
     "videoToGif": "影片轉 GIF"

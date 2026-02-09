@@ -295,6 +295,111 @@
       "fbPostFormatterDesc": "Bold, italic, and special fonts for Facebook posts."
     }
   },
+  "VideoCompress": {
+    "title": "Video Compressor",
+    "subtitle": "Free online MP4 video compression \u2014 reduce file size while keeping quality",
+    "uploadLabel": "Click or drag & drop to upload",
+    "uploadHint": "Supports MP4, MOV, WebM up to 200MB",
+    "qualityLabel": "Compression Quality",
+    "quality": {
+      "low": "Small File",
+      "medium": "Balanced",
+      "high": "High Quality"
+    },
+    "resolutionLabel": "Max Resolution",
+    "resolutionOriginal": "Keep Original",
+    "compressBtn": "Compress Video",
+    "compressing": "Compressing...",
+    "originalSize": "Original",
+    "compressedSize": "Compressed",
+    "savings": "Savings",
+    "download": "Download Compressed Video",
+    "reset": "Upload New",
+    "retry": "Retry",
+    "warmingUp": "Server is warming up, please wait...",
+    "unknownError": "An unexpected error occurred. Please try again.",
+    "resultPlaceholder": "Compression result will appear here",
+    "howToUseTitle": "How to Compress Videos?",
+    "steps": {
+      "step1Title": "Upload Video",
+      "step1Desc": "Click the upload area or drag & drop your video file. Supports MP4, MOV, WebM up to 200MB.",
+      "step2Title": "Choose Settings",
+      "step2Desc": "Select compression quality and max resolution. Balanced mode works best for most cases.",
+      "step3Title": "Download",
+      "step3Desc": "Review the file size reduction and download your compressed video with one click."
+    },
+    "faqTitle": "FAQ",
+    "faqs": {
+      "q1": "Will video compression reduce quality?",
+      "a1": "In High Quality mode, quality loss is virtually invisible. Balanced mode offers the best trade-off. Small File mode has the highest compression but some visible quality reduction.",
+      "q2": "What video formats are supported?",
+      "a2": "We support MP4, MOV (QuickTime), and WebM. Output is always MP4 for maximum compatibility.",
+      "q3": "Where can I use compressed videos?",
+      "a3": "Perfect for sharing via LINE, Instagram Stories, email attachments, and website uploads. The MP4 output works on all platforms.",
+      "q4": "What is the maximum upload size?",
+      "a4": "Each video can be up to 200MB. Processing time varies based on video length and resolution.",
+      "q5": "Are uploaded videos stored?",
+      "a5": "No. All videos are deleted from the server immediately after compression. We do not store any uploaded videos."
+    },
+    "relatedToolsTitle": "Related Tools",
+    "relatedTools": {
+      "videoToGif": "Video to GIF",
+      "videoToGifDesc": "Convert MP4 videos to animated GIFs with custom size and frame rate.",
+      "imageCompress": "Image Compressor",
+      "imageCompressDesc": "Compress JPG, PNG, WebP images to reduce file size.",
+      "removeBackground": "AI Background Remover",
+      "removeBackgroundDesc": "AI-powered automatic background removal with one click."
+    }
+  },
+  "VideoToGif": {
+    "title": "Video to GIF Converter",
+    "subtitle": "Free online MP4 to GIF converter \u2014 customize size and frame rate",
+    "uploadLabel": "Click or drag & drop to upload",
+    "uploadHint": "Supports MP4, MOV, WebM up to 200MB",
+    "fpsLabel": "Frame Rate (FPS)",
+    "widthLabel": "GIF Width",
+    "convertBtn": "Convert to GIF",
+    "converting": "Converting...",
+    "originalSize": "Original",
+    "gifSize": "GIF Size",
+    "download": "Download GIF",
+    "reset": "Upload New",
+    "retry": "Retry",
+    "warmingUp": "Server is warming up, please wait...",
+    "unknownError": "An unexpected error occurred. Please try again.",
+    "resultPlaceholder": "GIF preview will appear here",
+    "howToUseTitle": "How to Convert Video to GIF?",
+    "steps": {
+      "step1Title": "Upload Video",
+      "step1Desc": "Click the upload area or drag & drop your video file. Supports MP4, MOV, and WebM.",
+      "step2Title": "Adjust Settings",
+      "step2Desc": "Choose frame rate (FPS) and GIF width. Lower FPS and smaller width produce smaller GIF files.",
+      "step3Title": "Download GIF",
+      "step3Desc": "Preview the result and download your animated GIF with one click."
+    },
+    "faqTitle": "FAQ",
+    "faqs": {
+      "q1": "What's the difference between GIF and video?",
+      "a1": "GIF is an animated image format that auto-loops without a player. Great for chat reactions, tutorials, and social posts. However, GIFs don't support audio and are usually larger than videos.",
+      "q2": "How can I make the GIF file smaller?",
+      "a2": "Lower the FPS (5-10) and GIF width (320px) to significantly reduce file size. Shorter video clips also produce smaller GIFs.",
+      "q3": "Where can I use GIFs?",
+      "a3": "GIFs work everywhere: LINE, Slack, Discord, email, websites, social media. They're the most universal format for sharing animated content.",
+      "q4": "What video length works best for GIFs?",
+      "a4": "5-15 second clips work best. Videos over 30 seconds create very large GIFs \u2014 consider sharing as video instead.",
+      "q5": "Are uploaded videos stored?",
+      "a5": "No. All videos are deleted from the server immediately after conversion. We do not store any uploaded videos."
+    },
+    "relatedToolsTitle": "Related Tools",
+    "relatedTools": {
+      "videoCompress": "Video Compressor",
+      "videoCompressDesc": "Compress MP4 videos while keeping quality.",
+      "imageCompress": "Image Compressor",
+      "imageCompressDesc": "Compress JPG, PNG, WebP images to reduce file size.",
+      "removeBackground": "AI Background Remover",
+      "removeBackgroundDesc": "AI-powered automatic background removal with one click."
+    }
+  },
   "VideoToolsNav": {
     "videoCompress": "Video Compressor",
     "videoToGif": "Video to GIF"
