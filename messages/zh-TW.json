@@ -73,8 +73,8 @@
       "fontGeneratorDesc": "粗體、花體、哥德體、可愛字體等 15 種風格即時轉換，一鍵複製。",
       "imageCompressor": "圖片壓縮器",
       "imageCompressorDesc": "無損壓縮圖片，支援 PNG / JPG / WebP。",
-      "resumeAnalyzer": "履歷分析器",
-      "resumeAnalyzerDesc": "AI 驅動的履歷分析，獲取個人化改善建議。"
+      "videoCompressor": "影片壓縮",
+      "videoCompressorDesc": "線上壓縮 MP4 影片，保持畫質。免費使用。"
     }
   },
   "Editor": {
@@ -188,6 +188,27 @@
       "imageCompressorDesc": "無損壓縮圖片，支援 PNG / JPG / WebP。",
       "bgRemover": "去背工具",
       "bgRemoverDesc": "AI 驅動的一鍵去背，支援人物和物品。"
+    }
+  },
+  "Homepage": {
+    "heroTitle": "免費線上工具",
+    "heroSubtitle": "圖片壓縮、AI 去背、影片壓縮、影片轉 GIF、特殊字體等實用工具，免費使用，無需註冊。",
+    "imageToolsTitle": "圖片工具",
+    "videoToolsTitle": "影片工具",
+    "textToolsTitle": "文字工具",
+    "tools": {
+      "imageCompress": "圖片壓縮",
+      "imageCompressDesc": "壓縮 JPG、PNG、WebP 圖片，縮小檔案大小。",
+      "removeBackground": "AI 去背",
+      "removeBackgroundDesc": "AI 自動偵測並移除圖片背景。",
+      "videoCompress": "影片壓縮",
+      "videoCompressDesc": "壓縮 MP4 影片大小，保持畫質。",
+      "videoToGif": "影片轉 GIF",
+      "videoToGifDesc": "將影片轉換為 GIF 動圖。",
+      "fontGenerator": "特殊字體產生器",
+      "fontGeneratorDesc": "15 種特殊字體風格，一鍵複製。",
+      "fbPostFormatter": "FB 貼文排版",
+      "fbPostFormatterDesc": "粗體、斜體、換行保留，一鍵排版。"
     }
   },
   "ImageToolsNav": {

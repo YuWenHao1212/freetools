@@ -59,14 +59,14 @@ export default async function MdToFbPage({
       description: t("relatedTools.fontGeneratorDesc"),
     },
     {
-      href: "#",
+      href: "/image/compress",
       title: t("relatedTools.imageCompressor"),
       description: t("relatedTools.imageCompressorDesc"),
     },
     {
-      href: "#",
-      title: t("relatedTools.resumeAnalyzer"),
-      description: t("relatedTools.resumeAnalyzerDesc"),
+      href: "/video/compress",
+      title: t("relatedTools.videoCompressor"),
+      description: t("relatedTools.videoCompressorDesc"),
     },
   ];
 
@@ -83,11 +83,41 @@ export default async function MdToFbPage({
     })),
   };
 
+  const webAppSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: t("title"),
+    url: `https://neatoolkit.com/${locale}/text/fb-post-formatter`,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Any",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: t("howToUseTitle"),
+    step: steps.map(({ number, title, description }) => ({
+      "@type": "HowToStep",
+      position: number,
+      name: title,
+      text: description,
+    })),
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
       <Header />
 

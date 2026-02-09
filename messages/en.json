@@ -73,8 +73,8 @@
       "fontGeneratorDesc": "15 Unicode font styles including bold, script, fraktur, and cute fonts. One-click copy.",
       "imageCompressor": "Image Compressor",
       "imageCompressorDesc": "Compress images without losing quality, supports PNG / JPG / WebP.",
-      "resumeAnalyzer": "Resume Analyzer",
-      "resumeAnalyzerDesc": "AI-powered resume analysis, get personalized improvement suggestions."
+      "videoCompressor": "Video Compressor",
+      "videoCompressorDesc": "Compress MP4 videos while keeping quality. Free online tool."
     }
   },
   "Editor": {
@@ -188,6 +188,27 @@
       "imageCompressorDesc": "Compress images without losing quality, supports PNG / JPG / WebP.",
       "bgRemover": "Background Remover",
       "bgRemoverDesc": "AI-powered one-click background removal for people and objects."
+    }
+  },
+  "Homepage": {
+    "heroTitle": "Free Online Tools",
+    "heroSubtitle": "Image compression, AI background removal, video compression, video to GIF, special fonts and more \u2014 free to use, no signup required.",
+    "imageToolsTitle": "Image Tools",
+    "videoToolsTitle": "Video Tools",
+    "textToolsTitle": "Text Tools",
+    "tools": {
+      "imageCompress": "Image Compressor",
+      "imageCompressDesc": "Compress JPG, PNG, WebP images to reduce file size.",
+      "removeBackground": "Background Remover",
+      "removeBackgroundDesc": "AI-powered automatic background removal.",
+      "videoCompress": "Video Compressor",
+      "videoCompressDesc": "Compress MP4 videos while keeping quality.",
+      "videoToGif": "Video to GIF",
+      "videoToGifDesc": "Convert videos to animated GIF images.",
+      "fontGenerator": "Font Generator",
+      "fontGeneratorDesc": "15 special font styles with one-click copy.",
+      "fbPostFormatter": "FB Post Formatter",
+      "fbPostFormatterDesc": "Bold, italic, line break preservation for Facebook."
     }
   },
   "ImageToolsNav": {

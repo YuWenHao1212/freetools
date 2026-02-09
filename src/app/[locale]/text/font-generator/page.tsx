@@ -76,12 +76,12 @@ export default async function FontGeneratorPage({
       description: t("relatedTools.fbPostFormatterDesc"),
     },
     {
-      href: "#",
+      href: "/image/compress",
       title: t("relatedTools.imageCompressor"),
       description: t("relatedTools.imageCompressorDesc"),
     },
     {
-      href: "#",
+      href: "/image/remove-background",
       title: t("relatedTools.bgRemover"),
       description: t("relatedTools.bgRemoverDesc"),
     },
@@ -100,11 +100,41 @@ export default async function FontGeneratorPage({
     })),
   };
 
+  const webAppSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: t("title"),
+    url: `https://neatoolkit.com/${locale}/text/font-generator`,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Any",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: t("howToUseTitle"),
+    step: steps.map(({ number, title, description }) => ({
+      "@type": "HowToStep",
+      position: number,
+      name: title,
+      text: description,
+    })),
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
       <Header />
 
