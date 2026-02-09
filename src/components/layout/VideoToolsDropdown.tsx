@@ -40,8 +40,8 @@ export default function VideoToolsDropdown({
         aria-expanded={isOpen}
         className={
           active
-            ? "flex items-center gap-1 text-base font-semibold text-ink-900"
-            : "flex items-center gap-1 text-base text-ink-600 hover:text-ink-900"
+            ? "flex cursor-pointer items-center gap-1 text-base font-semibold text-ink-900 transition-colors hover:text-accent"
+            : "flex cursor-pointer items-center gap-1 text-base text-ink-600 transition-colors hover:text-ink-900"
         }
       >
         {label}

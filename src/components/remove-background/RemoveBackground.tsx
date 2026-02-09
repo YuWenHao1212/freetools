@@ -86,7 +86,7 @@ export default function RemoveBackground() {
       <div className="flex flex-col gap-6">
         <UploadZone
           accept="image/jpeg,image/png,image/webp"
-          maxSize={10 * 1024 * 1024}
+          maxSize={15 * 1024 * 1024}
           label={t("uploadLabel")}
           hint={t("uploadHint")}
           onFile={handleFile}

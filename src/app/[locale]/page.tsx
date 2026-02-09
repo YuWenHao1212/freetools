@@ -94,19 +94,19 @@ export default async function HomePage({
 
         {/* Tool Categories */}
         <section className="pb-20 pt-8">
-          <div className="mx-auto max-w-7xl px-6 2xl:max-w-[1600px]">
-            <div className="space-y-16">
+          <div className="mx-auto max-w-4xl px-6">
+            <div className="space-y-12">
               {toolCategories.map(({ titleKey, tools }) => (
                 <div key={titleKey}>
                   <h2 className="font-serif text-2xl font-bold text-ink-900 md:text-3xl">
                     {t(titleKey)}
                   </h2>
-                  <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="mt-6 grid gap-6 sm:grid-cols-2">
                     {tools.map(({ key, href }) => (
                       <Link
                         key={key}
                         href={href}
-                        className="group rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md"
+                        className="group rounded-xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-lg"
                       >
                         <h3 className="text-lg font-semibold text-ink-900 group-hover:text-accent">
                           {t(`tools.${key}`)}

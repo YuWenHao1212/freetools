@@ -25,8 +25,8 @@ export default function LocaleSwitcher() {
             onClick={() => handleSwitch(loc)}
             className={
               isActive
-                ? "rounded-full px-3 py-0.5 text-xs font-medium bg-[#CA8A04] text-white"
-                : "rounded-full px-3 py-0.5 text-xs font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A]"
+                ? "cursor-pointer rounded-full bg-[#CA8A04] px-3 py-1 text-sm font-medium text-white"
+                : "cursor-pointer rounded-full px-3 py-1 text-sm font-medium text-[#1A1A1A]/70 transition-colors hover:bg-[#1A1A1A]/10 hover:text-[#1A1A1A]"
             }
           >
             {t(loc)}

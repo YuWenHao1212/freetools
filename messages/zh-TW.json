@@ -219,7 +219,7 @@
     "title": "線上圖片壓縮工具",
     "subtitle": "免費壓縮 JPG、PNG、WebP 圖片，快速縮小檔案大小，保持最佳畫質",
     "uploadLabel": "點擊或拖放圖片上傳",
-    "uploadHint": "支援 JPG、PNG、WebP，最大 10MB",
+    "uploadHint": "支援 JPG、PNG、WebP，最大 15MB",
     "qualityLabel": "壓縮品質",
     "quality": {
       "low": "小檔案",
@@ -240,7 +240,7 @@
     "howToUseTitle": "如何壓縮圖片？",
     "steps": {
       "step1Title": "上傳圖片",
-      "step1Desc": "點擊上傳區域或直接拖放圖片。支援 JPG、PNG、WebP 格式，最大 10MB。",
+      "step1Desc": "點擊上傳區域或直接拖放圖片。支援 JPG、PNG、WebP 格式，最大 15MB。",
       "step2Title": "選擇壓縮品質",
       "step2Desc": "選擇「小檔案」、「平衡」或「高畫質」模式，根據你的需求調整壓縮程度。",
       "step3Title": "下載壓縮圖片",
@@ -255,7 +255,7 @@
       "q3": "圖片壓縮後可以用在哪裡？",
       "a3": "壓縮後的圖片適合用於網站上傳、社群媒體貼文、Email 附件、部落格文章等。較小的檔案大小可以加快網頁載入速度。",
       "q4": "最大可以上傳多大的圖片？",
-      "a4": "單張圖片最大支援 10MB。如果你的圖片超過此限制，建議先降低解析度再上傳。",
+      "a4": "單張圖片最大支援 15MB。如果你的圖片超過此限制，建議先降低解析度再上傳。",
       "q5": "壓縮後的圖片會被保存嗎？",
       "a5": "不會。所有圖片在伺服器端處理後會立即刪除，我們不會保存你上傳的任何圖片。"
     },
@@ -273,7 +273,7 @@
     "title": "AI 去背工具",
     "subtitle": "免費線上去背，AI 自動偵測人物與物品，一鍵移除圖片背景",
     "uploadLabel": "點擊或拖放圖片上傳",
-    "uploadHint": "支援 JPG、PNG、WebP，最大 10MB",
+    "uploadHint": "支援 JPG、PNG、WebP，最大 15MB",
     "processBtn": "開始去背",
     "processing": "AI 處理中...",
     "aiProcessing": "AI 正在處理你的圖片...",

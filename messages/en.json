@@ -219,7 +219,7 @@
     "title": "Online Image Compressor",
     "subtitle": "Free JPG, PNG, WebP compression \u2014 reduce file size while keeping quality",
     "uploadLabel": "Click or drag & drop to upload",
-    "uploadHint": "Supports JPG, PNG, WebP up to 10MB",
+    "uploadHint": "Supports JPG, PNG, WebP up to 15MB",
     "qualityLabel": "Compression Quality",
     "quality": {
       "low": "Small File",
@@ -240,7 +240,7 @@
     "howToUseTitle": "How to Compress Images?",
     "steps": {
       "step1Title": "Upload Image",
-      "step1Desc": "Click the upload area or drag & drop your image. Supports JPG, PNG, and WebP up to 10MB.",
+      "step1Desc": "Click the upload area or drag & drop your image. Supports JPG, PNG, and WebP up to 15MB.",
       "step2Title": "Choose Quality",
       "step2Desc": "Select Small File, Balanced, or High Quality mode based on your needs.",
       "step3Title": "Download",
@@ -255,7 +255,7 @@
       "q3": "Where can I use compressed images?",
       "a3": "Compressed images are perfect for website uploads, social media posts, email attachments, and blog articles. Smaller files mean faster page loading.",
       "q4": "What is the maximum upload size?",
-      "a4": "Each image can be up to 10MB. If your image exceeds this limit, consider reducing the resolution first.",
+      "a4": "Each image can be up to 15MB. If your image exceeds this limit, consider reducing the resolution first.",
       "q5": "Are uploaded images stored on your server?",
       "a5": "No. All images are deleted immediately after processing. We do not store any of your uploaded images."
     },
@@ -273,7 +273,7 @@
     "title": "AI Background Remover",
     "subtitle": "Free online background removal \u2014 AI automatically detects subjects and removes backgrounds",
     "uploadLabel": "Click or drag & drop to upload",
-    "uploadHint": "Supports JPG, PNG, WebP up to 10MB",
+    "uploadHint": "Supports JPG, PNG, WebP up to 15MB",
     "processBtn": "Remove Background",
     "processing": "Processing...",
     "aiProcessing": "AI is processing your image...",
