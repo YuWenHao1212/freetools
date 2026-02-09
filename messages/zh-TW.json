@@ -12,8 +12,8 @@
     "removeBackgroundDescription": "免費線上去背工具，AI 自動偵測人物與物品，一鍵移除圖片背景。支援 JPG、PNG，適合電商、社群貼文、證件照使用。",
     "videoCompressTitle": "線上壓縮影片 — 免費影片壓縮工具，手機也能用 | Neatoolkit",
     "videoCompressDescription": "免費線上壓縮影片工具，iPhone、手機直接用瀏覽器壓縮 MP4 影片。免安裝任何 App，支援調整解析度與品質，適合 LINE、IG 限動、Email 分享。",
-    "videoToGifTitle": "影片轉 GIF — 免費線上 MP4 轉 GIF 動圖 | Neatoolkit",
-    "videoToGifDescription": "免費線上影片轉 GIF 工具，將 MP4 影片快速轉換為 GIF 動圖。支援自訂尺寸和幀率，適合製作社群貼文、聊天表情和教學動圖。"
+    "videoToGifTitle": "線上影片轉 GIF — 免費 GIF 製作工具，手機也能用 | Neatoolkit",
+    "videoToGifDescription": "免費線上影片轉 GIF 工具，iPhone、手機直接用瀏覽器將 MP4 影片轉為 GIF 動圖。免安裝 App，支援自訂尺寸和幀率，適合製作社群貼文、聊天表情和教學動圖。"
   },
   "Header": {
     "imageTools": "圖片工具",
@@ -382,8 +382,8 @@
     }
   },
   "VideoToGif": {
-    "title": "影片轉 GIF",
-    "subtitle": "免費將 MP4 影片轉換為 GIF 動圖，支援自訂尺寸和幀率",
+    "title": "線上影片轉 GIF 工具",
+    "subtitle": "免費線上 GIF 製作工具，手機直接開網頁將影片轉為 GIF 動圖，免安裝",
     "uploadLabel": "點擊或拖放影片上傳",
     "uploadHint": "支援 MP4、MOV、WebM，最大 100MB",
     "fpsLabel": "幀率 (FPS)",
@@ -418,7 +418,13 @@
       "q4": "影片多長比較適合轉 GIF？",
       "a4": "建議 5-15 秒的片段最適合。超過 30 秒的影片轉換為 GIF 後檔案會很大，建議使用影片格式分享。",
       "q5": "上傳的影片會被保存嗎？",
-      "a5": "不會。所有影片在轉換完成後立即從伺服器刪除，我們不會保存任何上傳的影片。"
+      "a5": "不會。所有影片在轉換完成後立即從伺服器刪除，我們不會保存任何上傳的影片。",
+      "q6": "iPhone 或手機影片怎麼轉 GIF？",
+      "a6": "直接用 iPhone 或 Android 手機的瀏覽器（Safari、Chrome）打開本頁面，從相簿選擇影片即可線上轉換為 GIF。完全免安裝任何 App，手機影片轉 GIF 線上就能完成。",
+      "q7": "影片轉 GIF 怎麼不失真？",
+      "a7": "本工具使用調色盤優化技術（Palette Generation），能保留最佳色彩品質。選擇較高的 FPS（15-20）和較大的寬度（640px）可以產生更清晰的 GIF。不過 GIF 格式最多只支援 256 色，所以與原始影片相比會有一定的色彩差異。",
+      "q8": "GIF 製作需要安裝軟體嗎？",
+      "a8": "不需要。這是一款免安裝的線上 GIF 製作工具，打開網頁就能直接使用。支援電腦、手機、平板等所有裝置，不需要下載任何軟體或 App。"
     },
     "relatedToolsTitle": "相關工具",
     "relatedTools": {

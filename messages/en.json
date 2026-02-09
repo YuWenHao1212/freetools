@@ -12,8 +12,8 @@
     "removeBackgroundDescription": "Free online AI background remover. Automatically detect and remove image backgrounds with one click. Change photo background for e-commerce, social media, and ID photos.",
     "videoCompressTitle": "Video Compressor Online — Free MP4 Compression, Works on Phone | Neatoolkit",
     "videoCompressDescription": "Free online video compressor. Compress MP4 videos from iPhone or any phone directly in your browser. No app needed — adjust resolution and quality for LINE, Instagram Stories, and email.",
-    "videoToGifTitle": "Video to GIF — Free Online MP4 to GIF Converter | Neatoolkit",
-    "videoToGifDescription": "Free online video to GIF converter. Convert MP4 videos to animated GIFs quickly. Customize size and frame rate for social media posts, chat stickers, and tutorials."
+    "videoToGifTitle": "Video to GIF Online — Free GIF Maker, Works on Phone | Neatoolkit",
+    "videoToGifDescription": "Free online video to GIF converter. Convert MP4 videos to animated GIFs from iPhone or any phone directly in your browser. No app needed — customize size and frame rate for social media, chat stickers, and tutorials."
   },
   "Header": {
     "imageTools": "Image Tools",
@@ -382,8 +382,8 @@
     }
   },
   "VideoToGif": {
-    "title": "Video to GIF Converter",
-    "subtitle": "Free online MP4 to GIF converter — customize size and frame rate",
+    "title": "Online Video to GIF Converter",
+    "subtitle": "Free online GIF maker — convert videos to GIFs on any device, no app needed",
     "uploadLabel": "Click or drag & drop to upload",
     "uploadHint": "Supports MP4, MOV, WebM up to 100MB",
     "fpsLabel": "Frame Rate (FPS)",
@@ -418,7 +418,13 @@
       "q4": "What video length works best for GIFs?",
       "a4": "5-15 second clips work best. Videos over 30 seconds create very large GIFs — consider sharing as video instead.",
       "q5": "Are uploaded videos stored?",
-      "a5": "No. All videos are deleted from the server immediately after conversion. We do not store any uploaded videos."
+      "a5": "No. All videos are deleted from the server immediately after conversion. We do not store any uploaded videos.",
+      "q6": "Can I convert videos to GIF on iPhone or Android?",
+      "a6": "Yes! Open this page in your phone's browser (Safari, Chrome), select a video from your camera roll, and convert it to GIF directly online. No app installation needed.",
+      "q7": "How do I make a high-quality GIF from a video?",
+      "a7": "This tool uses palette optimization for the best color quality. Choose a higher FPS (15-20) and larger width (640px) for sharper GIFs. Note that GIF format supports only 256 colors, so some color difference from the original video is expected.",
+      "q8": "Do I need to install any software?",
+      "a8": "No installation required. This is a browser-based online GIF maker that works on any device — desktop, phone, or tablet. Just open the page and start converting."
     },
     "relatedToolsTitle": "Related Tools",
     "relatedTools": {

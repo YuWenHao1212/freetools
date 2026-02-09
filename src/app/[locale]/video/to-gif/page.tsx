@@ -59,6 +59,9 @@ export default async function VideoToGifPage({
     { question: t("faqs.q3"), answer: t("faqs.a3") },
     { question: t("faqs.q4"), answer: t("faqs.a4") },
     { question: t("faqs.q5"), answer: t("faqs.a5") },
+    { question: t("faqs.q6"), answer: t("faqs.a6") },
+    { question: t("faqs.q7"), answer: t("faqs.a7") },
+    { question: t("faqs.q8"), answer: t("faqs.a8") },
   ];
 
   const relatedTools = [
