@@ -60,11 +60,32 @@ function captureVideoMeta(file: File): Promise<VideoMeta> {
   });
 }
 
-function estimateCompressTime(fileSizeMB: number): number {
-  // Baseline: ~2.3 seconds per MB (based on 19MB -> 43s at 4 vCPU with auto 720p)
-  const secondsPerMB = 2.3;
-  const estimated = Math.ceil(fileSizeMB * secondsPerMB);
-  return Math.max(10, estimated);
+function estimateCompressTime(
+  fileSizeMB: number,
+  quality: Quality,
+  resolution: string,
+): number {
+  // Baseline: 19MB, medium quality, 720p (auto) -> 30s on 4 vCPU
+  const baseSecondsPerMB = 1.6;
+
+  // Quality multiplier: ultrafast is ~2x faster than fast
+  const qualityMultiplier: Record<Quality, number> = {
+    low: 0.5,
+    medium: 1.0,
+    high: 1.8,
+  };
+
+  // Resolution multiplier: pixel count relative to 720p
+  const resolutionMultiplier: Record<string, number> = {
+    "480p": 0.45,
+    "": 1.0,       // 720p (default auto-downscale)
+    "1080p": 2.25,
+  };
+
+  const qMul = qualityMultiplier[quality];
+  const rMul = resolutionMultiplier[resolution] ?? 1.0;
+  const estimated = Math.ceil(fileSizeMB * baseSecondsPerMB * qMul * rMul);
+  return Math.max(5, estimated);
 }
 
 export default function VideoCompress() {
@@ -255,7 +276,7 @@ export default function VideoCompress() {
                 <div className="h-8 w-8 animate-spin rounded-full border-3 border-accent border-t-transparent" />
                 <p className="mt-4 text-sm text-ink-600">{t("compressing")}</p>
                 <p className="mt-1 text-xs text-ink-400">
-                  {elapsed}s / {t("estimatedTime", { seconds: file ? estimateCompressTime(file.size / (1024 * 1024)) : 0 })}
+                  {elapsed}s / {t("estimatedTime", { seconds: file ? estimateCompressTime(file.size / (1024 * 1024), quality, resolution) : 0 })}
                 </p>
               </div>
               <div className="invisible mt-3">
