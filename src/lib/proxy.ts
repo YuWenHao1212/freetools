@@ -57,11 +57,10 @@ export async function proxyJson(
     body,
   });
 
-  const responseHeaders = new Headers();
-  responseHeaders.set("content-type", "application/json");
+  const data = await response.text();
 
-  return new Response(response.body, {
+  return new Response(data, {
     status: response.status,
-    headers: responseHeaders,
+    headers: { "content-type": "application/json" },
   });
 }
