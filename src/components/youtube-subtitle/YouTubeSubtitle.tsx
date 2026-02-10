@@ -228,7 +228,8 @@ export default function YouTubeSubtitle() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${result.video_id}-subtitle.txt`;
+    const safeName = (result.title || result.video_id).replace(/[/\\?%*:|"<>]/g, "").trim();
+    a.download = `${safeName}-subtitle.txt`;
     a.click();
     URL.revokeObjectURL(url);
   }, [result, showTimestamps]);

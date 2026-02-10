@@ -144,7 +144,8 @@ export default function YouTubeTranslate() {
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = `${result.video_id}-${result.target_language}.txt`;
+    const safeName = (result.title || result.video_id).replace(/[/\\?%*:|"<>]/g, "").trim();
+    anchor.download = `${safeName}-translate.txt`;
     document.body.appendChild(anchor);
     anchor.click();
     document.body.removeChild(anchor);
