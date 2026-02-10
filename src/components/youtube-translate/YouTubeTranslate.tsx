@@ -12,8 +12,6 @@ type Status = "idle" | "loading" | "done" | "error";
 const TARGET_LANGUAGES = [
   { code: "zh-TW", label: "\u7E41\u9AD4\u4E2D\u6587" },
   { code: "en", label: "English" },
-  { code: "ja", label: "\u65E5\u672C\u8A9E" },
-  { code: "ko", label: "\uD55C\uAD6D\uC5B4" },
 ] as const;
 
 interface TranslateResult {
