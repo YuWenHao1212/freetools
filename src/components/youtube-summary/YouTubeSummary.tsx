@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
+import ReactMarkdown from "react-markdown";
 import { fetchApi, ApiError } from "@/lib/api";
 import TurnstileWidget from "@/components/shared/TurnstileWidget";
 import VideoInfoCard from "@/components/shared/VideoInfoCard";
@@ -187,14 +188,8 @@ export default function YouTubeSummary() {
 
           {/* Summary display */}
           <div className="rounded-xl bg-white p-6">
-            <p className="text-xs font-medium text-ink-500">
-              {t("summaryLabel")}
-            </p>
-            <h3 className="mt-1 text-lg font-bold text-ink-900">
-              {t("summaryTitle")}
-            </h3>
-            <div className="mt-4 prose prose-sm max-w-none whitespace-pre-wrap text-ink-700">
-              {result.summary}
+            <div className="prose prose-sm max-w-none text-ink-700 prose-headings:text-ink-900 prose-headings:font-bold prose-h2:text-base prose-h2:mt-4 prose-h2:mb-2 prose-ul:my-2 prose-li:my-0.5">
+              <ReactMarkdown>{result.summary}</ReactMarkdown>
             </div>
           </div>
 
