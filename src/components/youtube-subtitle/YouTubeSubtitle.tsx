@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { fetchApi, ApiError } from "@/lib/api";
+import { getErrorMessageKey } from "@/lib/error-messages";
 import FullContentModal from "@/components/shared/FullContentModal";
 import VideoInfoCard from "@/components/shared/VideoInfoCard";
 
@@ -131,7 +132,8 @@ export default function YouTubeSubtitle() {
       }
     } catch (err) {
       if (err instanceof ApiError) {
-        setError(err.message);
+        const key = getErrorMessageKey(err.message);
+        setError(key ? t(key) : err.message);
       } else {
         setError(t("error"));
       }

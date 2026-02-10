@@ -465,6 +465,7 @@
   "YouTubeSubtitle": {
     "title": "YouTube Subtitle Downloader",
     "subtitle": "Paste a YouTube link to get the full video transcript",
+    "rateLimitNotice": "10 free uses per day across all YouTube tools. Resets after 24 hours.",
     "urlPlaceholder": "Paste YouTube video link",
     "getTranscript": "Get Transcript",
     "selectLanguage": "Subtitles:",
@@ -479,6 +480,14 @@
     "noSubtitles": "No subtitles available for this video",
     "invalidUrl": "Please enter a valid YouTube link",
     "error": "Failed to fetch subtitles. Please try again.",
+    "apiErrors": {
+      "invalidUrl": "Please enter a valid YouTube link",
+      "subtitlesDisabled": "Subtitles are disabled for this video",
+      "noSubtitles": "No subtitles available for this video",
+      "videoUnavailable": "Video is unavailable",
+      "fetchFailed": "Failed to fetch subtitles. Please try again later.",
+      "tooManyRequests": "Daily usage limit reached. Please try again tomorrow."
+    },
     "retry": "Retry",
     "howToUseTitle": "How to Use",
     "steps": {
@@ -513,6 +522,7 @@
   "YouTubeSummary": {
     "title": "YouTube AI Summary",
     "subtitle": "Paste a YouTube link and get an AI-generated summary of the video",
+    "rateLimitNotice": "10 free uses per day across all YouTube tools. Resets after 24 hours.",
     "urlPlaceholder": "Paste YouTube video link",
     "generateSummary": "Generate Summary",
     "loading": "AI is generating summary...",
@@ -523,6 +533,14 @@
     "summaryTitle": "Key Takeaways",
     "invalidUrl": "Please enter a valid YouTube link",
     "error": "Failed to generate summary. Please try again.",
+    "apiErrors": {
+      "invalidUrl": "Please enter a valid YouTube link",
+      "subtitlesDisabled": "Subtitles are disabled for this video",
+      "noSubtitles": "No subtitles available for this video",
+      "videoUnavailable": "Video is unavailable",
+      "fetchFailed": "Failed to fetch subtitles. Please try again later.",
+      "tooManyRequests": "Daily usage limit reached. Please try again tomorrow."
+    },
     "retry": "Retry",
     "captchaRequired": "Please complete verification to continue",
     "howToUseTitle": "How to Use",
@@ -541,7 +559,7 @@
       "q2": "How accurate is the summary?",
       "a2": "The AI summary is based on the video's subtitle content. Accuracy depends on subtitle quality. Verify important information with the original video.",
       "q3": "How many times can I use it per day?",
-      "a3": "Free users can use it several times per day. After that, complete a simple verification to continue.",
+      "a3": "Each user gets 10 free uses per day across all YouTube tools. After 3 uses, a simple verification is required. After 10 uses, please wait 24 hours for the limit to reset.",
       "q4": "What can I use it for?",
       "a4": "Great for quickly understanding video content, study notes, meeting summaries, or sharing key points with others.",
       "q5": "Is there a video length limit?",
@@ -558,6 +576,7 @@
   "YouTubeTranslate": {
     "title": "YouTube Subtitle Translator",
     "subtitle": "Paste a YouTube link and translate subtitles to your preferred language",
+    "rateLimitNotice": "10 free uses per day across all YouTube tools. Resets after 24 hours.",
     "urlPlaceholder": "Paste YouTube video link",
     "selectTargetLanguage": "Target Language",
     "translate": "Translate Subtitles",
@@ -568,6 +587,14 @@
     "download": "Download .txt",
     "copied": "Copied!",
     "error": "Translation failed. Please try again.",
+    "apiErrors": {
+      "invalidUrl": "Please enter a valid YouTube link",
+      "subtitlesDisabled": "Subtitles are disabled for this video. Translation is not possible.",
+      "noSubtitles": "No subtitles available for this video. Translation is not possible.",
+      "videoUnavailable": "Video is unavailable",
+      "fetchFailed": "Failed to fetch subtitles. Please try again later.",
+      "tooManyRequests": "Daily usage limit reached. Please try again tomorrow."
+    },
     "retry": "Retry",
     "captchaRequired": "Please complete verification to continue",
     "howToUseTitle": "How to Use",
@@ -586,7 +613,7 @@
       "q2": "How good is the translation?",
       "a2": "Uses AI translation engine for natural, fluent results. Important content should still be reviewed by a human.",
       "q3": "How many times can I use it per day?",
-      "a3": "Free users can use it several times per day. After that, complete a simple verification to continue.",
+      "a3": "Each user gets 10 free uses per day across all YouTube tools. After 3 uses, a simple verification is required. After 10 uses, please wait 24 hours for the limit to reset.",
       "q4": "How long does translation take?",
       "a4": "Usually 10-30 seconds, depending on the subtitle length.",
       "q5": "What if the video has no subtitles?",

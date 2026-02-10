@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import ReactMarkdown from "react-markdown";
 import { fetchApi, ApiError } from "@/lib/api";
+import { getErrorMessageKey } from "@/lib/error-messages";
 import TurnstileWidget from "@/components/shared/TurnstileWidget";
 import VideoInfoCard from "@/components/shared/VideoInfoCard";
 
@@ -101,7 +102,12 @@ export default function YouTubeSummary() {
         setStatus("idle");
         return;
       }
-      setError(err instanceof ApiError ? err.message : t("error"));
+      if (err instanceof ApiError) {
+        const key = getErrorMessageKey(err.message);
+        setError(key ? t(key) : err.message);
+      } else {
+        setError(t("error"));
+      }
       setStatus("error");
     }
   }, [videoUrl, captchaToken, t]);

@@ -465,6 +465,7 @@
   "YouTubeSubtitle": {
     "title": "YouTube 字幕下載工具",
     "subtitle": "貼上 YouTube 連結，一鍵取得影片逐字稿",
+    "rateLimitNotice": "每人每日可免費使用 10 次（所有 YouTube 工具共用額度），24 小時後自動重置",
     "urlPlaceholder": "貼上 YouTube 影片連結",
     "getTranscript": "取得逐字稿",
     "selectLanguage": "可用字幕：",
@@ -479,6 +480,14 @@
     "noSubtitles": "此影片沒有可用的字幕",
     "invalidUrl": "請輸入有效的 YouTube 連結",
     "error": "取得字幕失敗，請重試",
+    "apiErrors": {
+      "invalidUrl": "請輸入有效的 YouTube 連結",
+      "subtitlesDisabled": "此影片已停用字幕功能",
+      "noSubtitles": "此影片沒有可用的字幕",
+      "videoUnavailable": "影片無法存取",
+      "fetchFailed": "取得字幕失敗，請稍後再試",
+      "tooManyRequests": "今日使用次數已達上限，請明天再試"
+    },
     "retry": "重試",
     "howToUseTitle": "如何使用",
     "steps": {
@@ -513,6 +522,7 @@
   "YouTubeSummary": {
     "title": "YouTube AI 摘要工具",
     "subtitle": "貼上 YouTube 連結，AI 自動產生影片重點摘要",
+    "rateLimitNotice": "每人每日可免費使用 10 次（所有 YouTube 工具共用額度），24 小時後自動重置",
     "urlPlaceholder": "貼上 YouTube 影片連結",
     "generateSummary": "產生摘要",
     "loading": "AI 正在產生摘要...",
@@ -523,6 +533,14 @@
     "summaryTitle": "重點摘要",
     "invalidUrl": "請輸入有效的 YouTube 連結",
     "error": "產生摘要失敗，請重試",
+    "apiErrors": {
+      "invalidUrl": "請輸入有效的 YouTube 連結",
+      "subtitlesDisabled": "此影片已停用字幕功能，無法產生摘要",
+      "noSubtitles": "此影片沒有可用的字幕，無法產生摘要",
+      "videoUnavailable": "影片無法存取",
+      "fetchFailed": "取得字幕失敗，請稍後再試",
+      "tooManyRequests": "今日使用次數已達上限，請明天再試"
+    },
     "retry": "重試",
     "captchaRequired": "請完成驗證後再試",
     "howToUseTitle": "如何使用",
@@ -541,7 +559,7 @@
       "q2": "摘要的內容準確嗎？",
       "a2": "AI 摘要基於影片字幕內容產生，準確度取決於字幕品質。建議搭配原始影片確認重要資訊。",
       "q3": "每天可以使用幾次？",
-      "a3": "免費用戶每天可使用數次。超過後需完成簡單的人機驗證即可繼續使用。",
+      "a3": "每人每天可免費使用 10 次（所有 YouTube 工具共用額度）。超過 3 次後需完成簡單的人機驗證，超過 10 次則需等待 24 小時後重置。",
       "q4": "可以用在哪些情境？",
       "a4": "適合快速了解影片內容、做學習筆記、整理會議紀錄、或分享影片重點給他人。",
       "q5": "影片長度有限制嗎？",
@@ -558,6 +576,7 @@
   "YouTubeTranslate": {
     "title": "YouTube 字幕翻譯工具",
     "subtitle": "貼上 YouTube 連結，AI 將字幕翻譯成你需要的語言",
+    "rateLimitNotice": "每人每日可免費使用 10 次（所有 YouTube 工具共用額度），24 小時後自動重置",
     "urlPlaceholder": "貼上 YouTube 影片連結",
     "selectTargetLanguage": "翻譯目標語言",
     "translate": "翻譯字幕",
@@ -568,6 +587,14 @@
     "download": "下載 .txt",
     "copied": "已複製！",
     "error": "翻譯失敗，請重試",
+    "apiErrors": {
+      "invalidUrl": "請輸入有效的 YouTube 連結",
+      "subtitlesDisabled": "此影片已停用字幕功能，無法進行翻譯",
+      "noSubtitles": "此影片沒有可用的字幕，無法進行翻譯",
+      "videoUnavailable": "影片無法存取",
+      "fetchFailed": "取得字幕失敗，請稍後再試",
+      "tooManyRequests": "今日使用次數已達上限，請明天再試"
+    },
     "retry": "重試",
     "captchaRequired": "請完成驗證後再試",
     "howToUseTitle": "如何使用",
@@ -586,7 +613,7 @@
       "q2": "翻譯品質如何？",
       "a2": "使用 AI 翻譯引擎，翻譯結果自然流暢。但建議重要內容仍需人工校對。",
       "q3": "每天可以使用幾次？",
-      "a3": "免費用戶每天可使用數次。超過後需完成簡單的人機驗證即可繼續使用。",
+      "a3": "每人每天可免費使用 10 次（所有 YouTube 工具共用額度）。超過 3 次後需完成簡單的人機驗證，超過 10 次則需等待 24 小時後重置。",
       "q4": "翻譯整部影片需要多久？",
       "a4": "通常在 10-30 秒內完成，取決於影片字幕長度。",
       "q5": "原始影片沒有字幕怎麼辦？",

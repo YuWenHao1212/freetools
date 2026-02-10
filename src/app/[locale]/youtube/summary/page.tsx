@@ -120,6 +120,7 @@ export default async function YouTubeSummaryPage({
               {t("title")}
             </h1>
             <p className="mt-3 text-lg text-ink-600 md:text-xl">{t("subtitle")}</p>
+            <p className="mt-2 text-sm text-ink-400">{t("rateLimitNotice")}</p>
           </div>
         </section>
 
