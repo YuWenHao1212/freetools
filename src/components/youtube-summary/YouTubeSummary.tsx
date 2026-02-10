@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import ReactMarkdown from "react-markdown";
 import { fetchApi, ApiError } from "@/lib/api";
@@ -106,6 +106,15 @@ export default function YouTubeSummary() {
     }
   }, [videoUrl, captchaToken, t]);
 
+  // Auto-retry after CAPTCHA verification
+  const submitRef = useRef(handleSubmit);
+  submitRef.current = handleSubmit;
+  useEffect(() => {
+    if (captchaToken && status === "idle") {
+      submitRef.current();
+    }
+  }, [captchaToken, status]);
+
   const handleCopy = useCallback(async () => {
     if (!result) return;
     await navigator.clipboard.writeText(result.summary);
@@ -140,7 +149,18 @@ export default function YouTubeSummary() {
 
       {/* Turnstile CAPTCHA widget (conditional) */}
       {captchaRequired && !captchaToken && (
-        <TurnstileWidget onVerify={(token) => setCaptchaToken(token)} />
+        <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+          <p className="mb-3 text-sm text-amber-700">
+            {t("captchaRequired")}
+          </p>
+          <TurnstileWidget
+            onVerify={(token) => {
+              setCaptchaToken(token);
+              setCaptchaRequired(false);
+            }}
+            onExpire={() => setCaptchaToken(null)}
+          />
+        </div>
       )}
 
       {/* Loading state */}

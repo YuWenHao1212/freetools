@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { fetchApi, ApiError } from "@/lib/api";
 import TurnstileWidget from "@/components/shared/TurnstileWidget";
@@ -113,6 +113,15 @@ export default function YouTubeTranslate() {
   const handleCaptchaExpire = useCallback(() => {
     setCaptchaToken(null);
   }, []);
+
+  // Auto-retry after CAPTCHA verification
+  const submitRef = useRef(handleSubmit);
+  submitRef.current = handleSubmit;
+  useEffect(() => {
+    if (captchaToken && status === "idle") {
+      submitRef.current();
+    }
+  }, [captchaToken, status]);
 
   const handleCopy = useCallback(async () => {
     if (!result) return;
