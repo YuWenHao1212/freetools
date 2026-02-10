@@ -14,21 +14,12 @@ const TARGET_LANGUAGES = [
   { code: "en", label: "English" },
 ] as const;
 
-const AB_TEST_MODELS = [
-  { id: "openai/gpt-4o-mini", label: "GPT-4o Mini" },
-  { id: "google/gemini-2.5-flash-lite", label: "Gemini 2.5 Flash Lite" },
-  { id: "qwen/qwen3-30b-a3b", label: "Qwen3 30B" },
-  { id: "openai/gpt-4.1-nano", label: "GPT-4.1 Nano" },
-] as const;
-
 interface TranslateResult {
   video_id: string;
   source_language: string;
   target_language: string;
   total_lines: number;
   translation: string;
-  model?: string;
-  elapsed_seconds?: number;
   title?: string;
   channel?: string;
   thumbnail_url?: string;
@@ -43,7 +34,6 @@ export default function YouTubeTranslate() {
 
   const [videoUrl, setVideoUrl] = useState("");
   const [targetLanguage, setTargetLanguage] = useState("zh-TW");
-  const [selectedModel, setSelectedModel] = useState<string>(AB_TEST_MODELS[0].id);
   const [status, setStatus] = useState<Status>("idle");
   const [result, setResult] = useState<TranslateResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -96,7 +86,7 @@ export default function YouTubeTranslate() {
 
       const response = await fetchApi(
         "/api/youtube/translate",
-        JSON.stringify({ url: videoUrl, target_language: targetLanguage, model: selectedModel }),
+        JSON.stringify({ url: videoUrl, target_language: targetLanguage }),
         { headers },
       );
 
@@ -113,7 +103,7 @@ export default function YouTubeTranslate() {
       setError(err instanceof ApiError ? err.message : t("error"));
       setStatus("error");
     }
-  }, [videoUrl, targetLanguage, selectedModel, captchaToken, t]);
+  }, [videoUrl, targetLanguage, captchaToken, t]);
 
   const handleCaptchaVerify = useCallback((token: string) => {
     setCaptchaToken(token);
@@ -213,29 +203,6 @@ export default function YouTubeTranslate() {
         </div>
       </div>
 
-      {/* AB Test: Model selector (temporary) */}
-      <div className="rounded-xl border border-dashed border-amber-300 bg-amber-50 p-3">
-        <p className="mb-2 text-xs font-medium text-amber-700">
-          AB Test: Model
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {AB_TEST_MODELS.map(({ id, label }) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => setSelectedModel(id)}
-              className={
-                selectedModel === id
-                  ? "rounded-full bg-amber-500 px-3 py-1 text-xs font-medium text-white"
-                  : "cursor-pointer rounded-full border border-amber-300 bg-white px-3 py-1 text-xs text-amber-700 hover:bg-amber-100"
-              }
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Turnstile CAPTCHA widget */}
       {captchaRequired && !captchaToken && (
         <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
@@ -284,17 +251,9 @@ export default function YouTubeTranslate() {
 
           {/* Preview */}
           <div className="rounded-xl bg-white p-5">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-              <p className="text-sm font-medium text-ink-700">
-                {t("preview")}
-              </p>
-              {(result.model || result.elapsed_seconds) && (
-                <p className="rounded-full bg-amber-50 px-3 py-1 text-xs text-amber-700">
-                  {result.model?.split("/").pop()}
-                  {result.elapsed_seconds != null && ` · ${result.elapsed_seconds}s`}
-                </p>
-              )}
-            </div>
+            <p className="mb-4 text-sm font-medium text-ink-700">
+              {t("preview")}
+            </p>
             <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-ink-700">
               {previewText}
               {result.total_lines > PREVIEW_LINE_COUNT && "\n..."}
