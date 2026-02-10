@@ -4,7 +4,7 @@ import { verifyTurnstile } from "@/lib/turnstile";
 
 export async function POST(request: Request) {
   const ip = getClientIP(request);
-  const status = checkRateLimit(ip);
+  const status = await checkRateLimit(ip);
 
   if (status === "blocked") {
     return Response.json(

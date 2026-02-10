@@ -1,23 +1,40 @@
-const ipCounts = new Map<string, { count: number; resetAt: number }>();
+import { Redis } from "@upstash/redis";
+
 const FREE_REQUESTS = 3;
 const CAPTCHA_REQUESTS = 10;
-const RESET_MS = 24 * 60 * 60 * 1000;
+const RESET_SECONDS = 24 * 60 * 60;
 
-export function checkRateLimit(
+let redis: Redis | null = null;
+
+function getRedis(): Redis | null {
+  if (redis) return redis;
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return null;
+  redis = new Redis({ url, token });
+  return redis;
+}
+
+export type RateLimitStatus = "free" | "captcha" | "blocked";
+
+export async function checkRateLimit(
   ip: string,
-): "free" | "captcha" | "blocked" {
-  const now = Date.now();
-  const entry = ipCounts.get(ip);
-
-  if (!entry || now > entry.resetAt) {
-    ipCounts.set(ip, { count: 1, resetAt: now + RESET_MS });
+): Promise<RateLimitStatus> {
+  try {
+    const client = getRedis();
+    if (!client) return "free";
+    const key = `rate:${ip}`;
+    const count = await client.incr(key);
+    if (count === 1) {
+      await client.expire(key, RESET_SECONDS);
+    }
+    if (count <= FREE_REQUESTS) return "free";
+    if (count <= CAPTCHA_REQUESTS) return "captcha";
+    return "blocked";
+  } catch (error) {
+    console.error("Rate limit check failed:", error);
     return "free";
   }
-
-  entry.count++;
-  if (entry.count <= FREE_REQUESTS) return "free";
-  if (entry.count <= CAPTCHA_REQUESTS) return "captcha";
-  return "blocked";
 }
 
 export function getClientIP(request: Request): string {
