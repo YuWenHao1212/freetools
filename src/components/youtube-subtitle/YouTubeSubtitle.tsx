@@ -28,6 +28,7 @@ interface SubtitleResult {
 
 const PREVIEW_LINES = 5;
 const SESSION_KEY = "yt-url";
+const RESULT_CACHE_KEY = "yt-subtitle-result";
 
 function formatTimestamp(seconds: number): string {
   const mins = Math.floor(seconds / 60);
@@ -63,10 +64,22 @@ export default function YouTubeSubtitle() {
   const [copied, setCopied] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Restore URL from sessionStorage on mount
+  // Restore URL and cached result from sessionStorage on mount
   useEffect(() => {
-    const saved = sessionStorage.getItem(SESSION_KEY);
-    if (saved) setVideoUrl(saved);
+    const savedUrl = sessionStorage.getItem(SESSION_KEY);
+    if (savedUrl) setVideoUrl(savedUrl);
+
+    const cachedResult = sessionStorage.getItem(RESULT_CACHE_KEY);
+    if (cachedResult) {
+      try {
+        const parsed: SubtitleResult = JSON.parse(cachedResult);
+        setResult(parsed);
+        setStatus("done");
+        if (parsed.language) setSelectedLanguage(parsed.language);
+      } catch {
+        sessionStorage.removeItem(RESULT_CACHE_KEY);
+      }
+    }
   }, []);
 
   const handleUrlChange = useCallback((url: string) => {
@@ -75,6 +88,7 @@ export default function YouTubeSubtitle() {
     setResult(null);
     setStatus("idle");
     setError("");
+    sessionStorage.removeItem(RESULT_CACHE_KEY);
   }, []);
 
   const handleSubmit = useCallback(async () => {
@@ -109,6 +123,7 @@ export default function YouTubeSubtitle() {
       const data: SubtitleResult = await response.json();
       setResult(data);
       setStatus("done");
+      sessionStorage.setItem(RESULT_CACHE_KEY, JSON.stringify(data));
 
       // Auto-select the returned language if not already set
       if (!selectedLanguage && data.language) {
@@ -148,6 +163,7 @@ export default function YouTubeSubtitle() {
         const data: SubtitleResult = await response.json();
         setResult(data);
         setStatus("done");
+        sessionStorage.setItem(RESULT_CACHE_KEY, JSON.stringify(data));
       } catch (err) {
         if (err instanceof ApiError) {
           setError(err.message);
@@ -185,6 +201,7 @@ export default function YouTubeSubtitle() {
         const data: SubtitleResult = await response.json();
         setResult(data);
         setStatus("done");
+        sessionStorage.setItem(RESULT_CACHE_KEY, JSON.stringify(data));
       } catch (err) {
         if (err instanceof ApiError) {
           setError(err.message);
@@ -322,13 +339,13 @@ export default function YouTubeSubtitle() {
                   role="switch"
                   aria-checked={showTimestamps}
                   onClick={handleTimestampToggle}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     showTimestamps ? "bg-accent" : "bg-ink-300"
                   }`}
                 >
                   <span
-                    className={`inline-block h-3.5 w-3.5 rounded-full bg-white transition-transform ${
-                      showTimestamps ? "translate-x-[18px]" : "translate-x-0.5"
+                    className={`inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${
+                      showTimestamps ? "translate-x-6" : "translate-x-1"
                     }`}
                   />
                 </button>

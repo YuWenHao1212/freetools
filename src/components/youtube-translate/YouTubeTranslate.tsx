@@ -28,7 +28,8 @@ interface TranslateResult {
 }
 
 const SESSION_STORAGE_KEY = "yt-url";
-const PREVIEW_LINE_COUNT = 5;
+const RESULT_CACHE_KEY = "yt-translate-result";
+const PREVIEW_LINE_COUNT = 3;
 
 export default function YouTubeTranslate() {
   const t = useTranslations("YouTubeTranslate");
@@ -43,11 +44,21 @@ export default function YouTubeTranslate() {
   const [captchaRequired, setCaptchaRequired] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
-  // Restore URL from sessionStorage on mount
+  // Restore URL and cached result from sessionStorage on mount
   useEffect(() => {
     const saved = sessionStorage.getItem(SESSION_STORAGE_KEY);
-    if (saved) {
-      setVideoUrl(saved);
+    if (saved) setVideoUrl(saved);
+
+    const cachedResult = sessionStorage.getItem(RESULT_CACHE_KEY);
+    if (cachedResult) {
+      try {
+        const parsed: TranslateResult = JSON.parse(cachedResult);
+        setResult(parsed);
+        setStatus("done");
+        setTargetLanguage(parsed.target_language);
+      } catch {
+        sessionStorage.removeItem(RESULT_CACHE_KEY);
+      }
     }
   }, []);
 
@@ -59,6 +70,7 @@ export default function YouTubeTranslate() {
     setStatus("idle");
     setError(null);
     setCopied(false);
+    sessionStorage.removeItem(RESULT_CACHE_KEY);
   }, []);
 
   const handleSubmit = useCallback(async () => {
@@ -80,9 +92,10 @@ export default function YouTubeTranslate() {
         { headers },
       );
 
-      const data = await response.json();
+      const data: TranslateResult = await response.json();
       setResult(data);
       setStatus("done");
+      sessionStorage.setItem(RESULT_CACHE_KEY, JSON.stringify(data));
     } catch (err) {
       if (err instanceof ApiError && err.status === 403) {
         setCaptchaRequired(true);

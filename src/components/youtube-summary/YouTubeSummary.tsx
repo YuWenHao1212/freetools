@@ -17,6 +17,7 @@ interface SummaryResult {
 }
 
 const SESSION_KEY = "yt-url";
+const RESULT_CACHE_KEY = "yt-summary-result";
 
 export default function YouTubeSummary() {
   const t = useTranslations("YouTubeSummary");
@@ -29,10 +30,21 @@ export default function YouTubeSummary() {
   const [captchaRequired, setCaptchaRequired] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
-  // Restore URL from sessionStorage on mount
+  // Restore URL and cached result from sessionStorage on mount
   useEffect(() => {
     const saved = sessionStorage.getItem(SESSION_KEY);
     if (saved) setVideoUrl(saved);
+
+    const cachedResult = sessionStorage.getItem(RESULT_CACHE_KEY);
+    if (cachedResult) {
+      try {
+        const parsed: SummaryResult = JSON.parse(cachedResult);
+        setResult(parsed);
+        setStatus("done");
+      } catch {
+        sessionStorage.removeItem(RESULT_CACHE_KEY);
+      }
+    }
   }, []);
 
   // Reset result and status when URL changes
@@ -44,6 +56,7 @@ export default function YouTubeSummary() {
     setError(null);
     setCaptchaRequired(false);
     setCaptchaToken(null);
+    sessionStorage.removeItem(RESULT_CACHE_KEY);
   }, []);
 
   const handleSubmit = useCallback(async () => {
@@ -80,6 +93,7 @@ export default function YouTubeSummary() {
       const data: SummaryResult = await response.json();
       setResult(data);
       setStatus("done");
+      sessionStorage.setItem(RESULT_CACHE_KEY, JSON.stringify(data));
     } catch (err) {
       if (err instanceof ApiError && err.status === 403) {
         setCaptchaRequired(true);
