@@ -113,16 +113,6 @@ export default function YouTubeSummary() {
     setTimeout(() => setCopied(false), 2000);
   }, [result]);
 
-  const handleRegenerate = useCallback(() => {
-    setResult(null);
-    setStatus("idle");
-    setError(null);
-    // Trigger a fresh submit after state resets
-    setTimeout(() => {
-      handleSubmit();
-    }, 0);
-  }, [handleSubmit]);
-
   const handleRetry = useCallback(() => {
     handleSubmit();
   }, [handleSubmit]);
@@ -201,13 +191,6 @@ export default function YouTubeSummary() {
               className="cursor-pointer rounded-xl bg-accent px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent/90"
             >
               {copied ? t("copied") : t("copyAll")}
-            </button>
-            <button
-              type="button"
-              onClick={handleRegenerate}
-              className="cursor-pointer rounded-xl border border-border bg-white px-6 py-2.5 text-sm font-medium text-ink-700 transition-colors hover:bg-cream-200"
-            >
-              {t("regenerate")}
             </button>
           </div>
         </div>
