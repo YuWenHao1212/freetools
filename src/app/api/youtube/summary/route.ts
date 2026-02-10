@@ -1,5 +1,5 @@
 import { proxyJson } from "@/lib/proxy";
-import { checkRateLimit, getClientIP } from "@/lib/rate-limit";
+import { checkRateLimit, getClientIP, markVerified } from "@/lib/rate-limit";
 import { verifyTurnstile } from "@/lib/turnstile";
 
 export async function POST(request: Request) {
@@ -28,6 +28,7 @@ export async function POST(request: Request) {
         { status: 403 },
       );
     }
+    await markVerified(ip);
   }
 
   return proxyJson("/api/youtube/summary", request);

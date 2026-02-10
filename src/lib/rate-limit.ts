@@ -29,11 +29,26 @@ export async function checkRateLimit(
       await client.expire(key, RESET_SECONDS);
     }
     if (count <= FREE_REQUESTS) return "free";
-    if (count <= CAPTCHA_REQUESTS) return "captcha";
-    return "blocked";
+    if (count > CAPTCHA_REQUESTS) return "blocked";
+
+    // 4-10: check if already verified
+    const verified = await client.get(`verified:${ip}`);
+    if (verified) return "free";
+
+    return "captcha";
   } catch (error) {
     console.error("Rate limit check failed:", error);
     return "free";
+  }
+}
+
+export async function markVerified(ip: string): Promise<void> {
+  try {
+    const client = getRedis();
+    if (!client) return;
+    await client.set(`verified:${ip}`, "1", { ex: RESET_SECONDS });
+  } catch (error) {
+    console.error("Mark verified failed:", error);
   }
 }
 
