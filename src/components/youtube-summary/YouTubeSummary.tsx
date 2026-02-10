@@ -4,12 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { fetchApi, ApiError } from "@/lib/api";
 import TurnstileWidget from "@/components/shared/TurnstileWidget";
+import VideoInfoCard from "@/components/shared/VideoInfoCard";
 
 type Status = "idle" | "loading" | "done" | "error";
 
 interface SummaryResult {
   video_id: string;
   summary: string;
+  title?: string;
+  channel?: string;
+  thumbnail_url?: string;
 }
 
 const SESSION_KEY = "yt-url";
@@ -123,7 +127,7 @@ export default function YouTubeSummary() {
           type="button"
           onClick={handleSubmit}
           disabled={status === "loading" || !videoUrl.trim()}
-          className="shrink-0 cursor-pointer rounded-xl bg-accent px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50"
+          className="shrink-0 cursor-pointer rounded-xl bg-accent px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-cream-300 disabled:text-ink-400"
         >
           {status === "loading" ? t("loading") : t("generateSummary")}
         </button>
@@ -159,9 +163,23 @@ export default function YouTubeSummary() {
       {/* Result state */}
       {status === "done" && result && (
         <div className="flex flex-col gap-4">
+          {/* Video info card */}
+          <VideoInfoCard
+            videoId={result.video_id}
+            title={result.title}
+            channel={result.channel}
+            thumbnailUrl={result.thumbnail_url}
+          />
+
           {/* Summary display */}
-          <div className="rounded-xl border border-border bg-cream-200 p-6">
-            <div className="prose prose-sm max-w-none whitespace-pre-wrap text-ink-700">
+          <div className="rounded-xl bg-white p-6">
+            <p className="text-xs font-medium text-ink-500">
+              {t("summaryLabel")}
+            </p>
+            <h3 className="mt-1 text-lg font-bold text-ink-900">
+              {t("summaryTitle")}
+            </h3>
+            <div className="mt-4 prose prose-sm max-w-none whitespace-pre-wrap text-ink-700">
               {result.summary}
             </div>
           </div>
