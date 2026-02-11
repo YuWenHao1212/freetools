@@ -8,7 +8,6 @@ import CategoryCard from "@/components/home/CategoryCard";
 import ToolCard from "@/components/home/ToolCard";
 import HeroDecorations from "@/components/home/HeroDecorations";
 import LucideIcon from "@/components/home/LucideIcon";
-import MoreByWenhao from "@/components/home/MoreByWenhao";
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -204,8 +203,6 @@ export default async function HomePage({
             </div>
           </div>
         </section>
-
-        <MoreByWenhao />
       </main>
 
       <Footer />

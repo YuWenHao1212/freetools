@@ -44,12 +44,6 @@
     "madeWith": "Made with",
     "by": "by Yu-Wen Hao"
   },
-  "MoreByWenhao": {
-    "sectionTitle": "More by Wenhao",
-    "airaTitle": "AIResumeAdvisor",
-    "airaDescription": "AI 驅動的履歷診斷工具 — 找出問題，不只美化",
-    "airaCta": "免費試用"
-  },
   "MdToFb": {
     "title": "Facebook 貼文排版工具",
     "subtitle": "臉書貼文排版 — 粗體、斜體、特殊字體、換行保留，一鍵複製貼上",
@@ -673,7 +667,7 @@
     "otherWorks": {
       "airaTitle": "AIResumeAdvisor",
       "airaDescription": "AI 履歷診斷工具",
-      "blogTitle": "個人部落格",
+      "blogTitle": "個人網站",
       "blogDescription": "AI、開發與生產力"
     },
     "collaborateTitle": "合作聯繫",

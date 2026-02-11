@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { EXTERNAL_LINKS, withUtm } from "@/lib/constants";
 import SocialLinks from "@/components/shared/SocialLinks";
 
 export default async function Footer() {
@@ -36,14 +35,12 @@ export default async function Footer() {
         <p className="mt-3 text-sm text-ink-600">
           {t("madeWith")} <span className="text-red-500">&#10084;</span>{" "}
           by{" "}
-          <a
-            href={withUtm(EXTERNAL_LINKS.personalSite, "freetools")}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/about"
             className="text-ink-600 underline decoration-ink-600/30 underline-offset-2 transition-colors hover:text-ink-900 hover:decoration-ink-900/50"
           >
             Yu-Wen Hao
-          </a>
+          </Link>
         </p>
 
         <div className="mt-3 flex justify-center">

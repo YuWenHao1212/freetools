@@ -44,12 +44,6 @@
     "madeWith": "Made with",
     "by": "by Yu-Wen Hao"
   },
-  "MoreByWenhao": {
-    "sectionTitle": "More by Wenhao",
-    "airaTitle": "AIResumeAdvisor",
-    "airaDescription": "AI-powered resume diagnostics — find problems, not just polish",
-    "airaCta": "Try Free"
-  },
   "MdToFb": {
     "title": "Facebook Post Formatter",
     "subtitle": "Generate bold text, italic & special fonts for Facebook — preserves line breaks, one-click copy",
@@ -673,7 +667,7 @@
     "otherWorks": {
       "airaTitle": "AIResumeAdvisor",
       "airaDescription": "AI resume diagnostics tool",
-      "blogTitle": "Personal Blog",
+      "blogTitle": "Personal Website",
       "blogDescription": "AI, development & productivity"
     },
     "collaborateTitle": "Get in Touch",

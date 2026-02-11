@@ -46,12 +46,17 @@ export default async function AboutPage({
     {
       title: t("otherWorks.airaTitle"),
       description: t("otherWorks.airaDescription"),
-      href: withUtm(EXTERNAL_LINKS.airesumeadvisor, "freetools-about"),
+      href: withUtm(EXTERNAL_LINKS.airesumeadvisor, "neatoolkit-about"),
     },
     {
       title: t("otherWorks.blogTitle"),
       description: t("otherWorks.blogDescription"),
-      href: withUtm(EXTERNAL_LINKS.blog, "freetools-about"),
+      href: withUtm(
+        locale === "en"
+          ? `${EXTERNAL_LINKS.personalSite}/en`
+          : EXTERNAL_LINKS.personalSite,
+        "neatoolkit-about",
+      ),
     },
   ];
 
