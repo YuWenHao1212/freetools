@@ -3,7 +3,8 @@
 import { useState, useCallback, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import UploadZone from "@/components/shared/UploadZone";
-import { fetchApi, ApiError } from "@/lib/api";
+import { fetchDirectApi, ApiError } from "@/lib/api";
+import TurnstileWidget from "@/components/shared/TurnstileWidget";
 import { formatFileSize } from "@/lib/utils";
 
 type Status = "idle" | "processing" | "done" | "error";
@@ -22,6 +23,7 @@ export default function RemoveBackground() {
   const [result, setResult] = useState<RemoveBgResult | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [isWarmingUp, setIsWarmingUp] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const previewUrl = useMemo(() => {
     if (!file) return null;
@@ -33,10 +35,11 @@ export default function RemoveBackground() {
     setResult(null);
     setStatus("idle");
     setErrorMsg("");
+    setCaptchaToken(null);
   }, []);
 
   const handleProcess = useCallback(async () => {
-    if (!file) return;
+    if (!file || !captchaToken) return;
 
     setStatus("processing");
     setErrorMsg("");
@@ -46,8 +49,10 @@ export default function RemoveBackground() {
     formData.append("file", file);
 
     try {
-      const response = await fetchApi("/api/image/remove-bg", formData, {
+      const response = await fetchDirectApi("/api/image/remove-bg", formData, {
         timeout: 60000,
+        action: "image/remove-bg",
+        captchaToken,
       });
 
       const blob = await response.blob();
@@ -70,7 +75,7 @@ export default function RemoveBackground() {
       }
       setStatus("error");
     }
-  }, [file, t]);
+  }, [file, captchaToken, t]);
 
   const handleReset = useCallback(() => {
     if (result?.url) URL.revokeObjectURL(result.url);
@@ -80,6 +85,7 @@ export default function RemoveBackground() {
     setStatus("idle");
     setErrorMsg("");
     setIsWarmingUp(false);
+    setCaptchaToken(null);
   }, [result, previewUrl]);
 
   const fileFormat = file?.type.split("/")[1]?.toUpperCase() ?? "";
@@ -209,11 +215,15 @@ export default function RemoveBackground() {
 
           {/* Pre-process: button */}
           {status !== "done" && (
-            <div className="flex justify-end">
+            <div className="flex items-center justify-between">
+              <TurnstileWidget
+                onVerify={(token) => setCaptchaToken(token)}
+                onExpire={() => setCaptchaToken(null)}
+              />
               <button
                 type="button"
                 onClick={handleProcess}
-                disabled={status === "processing"}
+                disabled={status === "processing" || !captchaToken}
                 className="cursor-pointer rounded-xl bg-accent px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {status === "processing" ? t("processing") : t("processBtn")}

@@ -3,7 +3,8 @@
 import { useState, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import UploadZone from "@/components/shared/UploadZone";
-import { fetchApi, ApiError } from "@/lib/api";
+import { fetchDirectApi, ApiError } from "@/lib/api";
+import TurnstileWidget from "@/components/shared/TurnstileWidget";
 import { formatFileSize } from "@/lib/utils";
 
 type Status = "idle" | "compressing" | "done" | "error";
@@ -104,6 +105,7 @@ export default function VideoCompress() {
   const [errorMsg, setErrorMsg] = useState("");
   const [isWarmingUp, setIsWarmingUp] = useState(false);
   const [elapsed, setElapsed] = useState(0);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval>>(null);
 
   const handleFile = useCallback(async (f: File) => {
@@ -114,6 +116,7 @@ export default function VideoCompress() {
     setIsWarmingUp(false);
     setThumbnail(null);
     setVideoDimensions(null);
+    setCaptchaToken(null);
 
     const meta = await captureVideoMeta(f);
     setThumbnail(meta.thumbnail);
@@ -123,7 +126,7 @@ export default function VideoCompress() {
   }, []);
 
   const handleCompress = useCallback(async () => {
-    if (!file) return;
+    if (!file || !captchaToken) return;
 
     setStatus("compressing");
     setErrorMsg("");
@@ -143,8 +146,10 @@ export default function VideoCompress() {
     const timeoutMs = Math.max(120000, estimatedSeconds * 1.5 * 1000);
 
     try {
-      const response = await fetchApi("/api/video/compress", formData, {
+      const response = await fetchDirectApi("/api/video/compress", formData, {
         timeout: timeoutMs,
+        action: "video/compress",
+        captchaToken,
       });
 
       const blob = await response.blob();
@@ -169,7 +174,7 @@ export default function VideoCompress() {
     } finally {
       if (timerRef.current) clearInterval(timerRef.current);
     }
-  }, [file, quality, resolution, t]);
+  }, [file, quality, resolution, captchaToken, t]);
 
   const handleRetry = useCallback(() => {
     handleCompress();
@@ -185,6 +190,7 @@ export default function VideoCompress() {
     setErrorMsg("");
     setIsWarmingUp(false);
     setElapsed(0);
+    setCaptchaToken(null);
   }, [result]);
 
   const savingsPercent =
@@ -424,11 +430,15 @@ export default function VideoCompress() {
                 </div>
               </div>
 
-              <div className="flex justify-end">
+              <div className="flex items-center justify-between">
+                <TurnstileWidget
+                  onVerify={(token) => setCaptchaToken(token)}
+                  onExpire={() => setCaptchaToken(null)}
+                />
                 <button
                   type="button"
                   onClick={handleCompress}
-                  disabled={status === "compressing"}
+                  disabled={status === "compressing" || !captchaToken}
                   className="cursor-pointer rounded-xl bg-accent px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {status === "compressing" ? t("compressing") : t("compressBtn")}

@@ -3,7 +3,8 @@
 import { useState, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import UploadZone from "@/components/shared/UploadZone";
-import { fetchApi, ApiError } from "@/lib/api";
+import { fetchDirectApi, ApiError } from "@/lib/api";
+import TurnstileWidget from "@/components/shared/TurnstileWidget";
 import { formatFileSize } from "@/lib/utils";
 
 type Status = "idle" | "converting" | "done" | "error";
@@ -71,6 +72,7 @@ export default function VideoToGif() {
   const [result, setResult] = useState<GifResult | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [elapsed, setElapsed] = useState(0);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval>>(null);
 
   const handleFile = useCallback(async (f: File) => {
@@ -80,6 +82,7 @@ export default function VideoToGif() {
     setErrorMsg("");
     setThumbnail(null);
     setVideoDimensions(null);
+    setCaptchaToken(null);
 
     const meta = await captureVideoMeta(f);
     setThumbnail(meta.thumbnail);
@@ -89,7 +92,7 @@ export default function VideoToGif() {
   }, []);
 
   const handleConvert = useCallback(async () => {
-    if (!file) return;
+    if (!file || !captchaToken) return;
 
     setStatus("converting");
     setErrorMsg("");
@@ -105,8 +108,10 @@ export default function VideoToGif() {
     formData.append("width", String(width));
 
     try {
-      const response = await fetchApi("/api/video/to-gif", formData, {
+      const response = await fetchDirectApi("/api/video/to-gif", formData, {
         timeout: 300000,
+        action: "video/to-gif",
+        captchaToken,
       });
 
       const blob = await response.blob();
@@ -129,7 +134,7 @@ export default function VideoToGif() {
     } finally {
       if (timerRef.current) clearInterval(timerRef.current);
     }
-  }, [file, fps, width, t]);
+  }, [file, fps, width, captchaToken, t]);
 
   const handleRetry = useCallback(() => {
     handleConvert();
@@ -144,6 +149,7 @@ export default function VideoToGif() {
     setStatus("idle");
     setErrorMsg("");
     setElapsed(0);
+    setCaptchaToken(null);
   }, [result]);
 
   const gifFileName = file
@@ -352,11 +358,15 @@ export default function VideoToGif() {
                 </div>
               </div>
 
-              <div className="flex justify-end">
+              <div className="flex items-center justify-between">
+                <TurnstileWidget
+                  onVerify={(token) => setCaptchaToken(token)}
+                  onExpire={() => setCaptchaToken(null)}
+                />
                 <button
                   type="button"
                   onClick={handleConvert}
-                  disabled={status === "converting"}
+                  disabled={status === "converting" || !captchaToken}
                   className="cursor-pointer rounded-xl bg-accent px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {status === "converting" ? t("converting") : t("convertBtn")}

@@ -3,7 +3,8 @@
 import { useState, useCallback, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import UploadZone from "@/components/shared/UploadZone";
-import { fetchApi, ApiError } from "@/lib/api";
+import { fetchDirectApi, ApiError } from "@/lib/api";
+import TurnstileWidget from "@/components/shared/TurnstileWidget";
 import { formatFileSize } from "@/lib/utils";
 
 type Status = "idle" | "compressing" | "done" | "error";
@@ -27,6 +28,7 @@ export default function ImageCompress() {
   const [result, setResult] = useState<CompressResult | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [isWarmingUp, setIsWarmingUp] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [originalDimensions, setOriginalDimensions] = useState<{ w: number; h: number } | null>(null);
 
   const previewUrl = useMemo(() => {
@@ -40,6 +42,7 @@ export default function ImageCompress() {
     setStatus("idle");
     setErrorMsg("");
     setOriginalDimensions(null);
+    setCaptchaToken(null);
 
     // Read original image dimensions
     const img = new Image();
@@ -50,7 +53,7 @@ export default function ImageCompress() {
   }, []);
 
   const handleCompress = useCallback(async () => {
-    if (!file) return;
+    if (!file || !captchaToken) return;
 
     setStatus("compressing");
     setErrorMsg("");
@@ -61,8 +64,10 @@ export default function ImageCompress() {
     formData.append("quality", quality);
 
     try {
-      const response = await fetchApi("/api/image/compress", formData, {
+      const response = await fetchDirectApi("/api/image/compress", formData, {
         timeout: 30000,
+        action: "image/compress",
+        captchaToken,
       });
 
       const blob = await response.blob();
@@ -90,7 +95,7 @@ export default function ImageCompress() {
       }
       setStatus("error");
     }
-  }, [file, quality, t]);
+  }, [file, quality, captchaToken, t]);
 
   const handleRetry = useCallback(() => {
     handleCompress();
@@ -105,6 +110,7 @@ export default function ImageCompress() {
     setErrorMsg("");
     setIsWarmingUp(false);
     setOriginalDimensions(null);
+    setCaptchaToken(null);
   }, [result, previewUrl]);
 
   const savingsPercent =
@@ -234,7 +240,7 @@ export default function ImageCompress() {
 
           {/* Pre-compress: quality + button */}
           {status !== "done" && (
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-4">
               <div className="flex items-center gap-4">
                 <label className="text-sm font-medium text-ink-700">
                   {t("qualityLabel")}
@@ -260,14 +266,20 @@ export default function ImageCompress() {
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={handleCompress}
-                disabled={status === "compressing"}
-                className="cursor-pointer rounded-xl bg-accent px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {status === "compressing" ? t("compressing") : t("compressBtn")}
-              </button>
+              <div className="flex items-center justify-between">
+                <TurnstileWidget
+                  onVerify={(token) => setCaptchaToken(token)}
+                  onExpire={() => setCaptchaToken(null)}
+                />
+                <button
+                  type="button"
+                  onClick={handleCompress}
+                  disabled={status === "compressing" || !captchaToken}
+                  className="cursor-pointer rounded-xl bg-accent px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {status === "compressing" ? t("compressing") : t("compressBtn")}
+                </button>
+              </div>
             </div>
           )}
 
