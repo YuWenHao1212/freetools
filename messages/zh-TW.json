@@ -667,7 +667,8 @@
     "howContent": "文字工具（特殊字體產生器、FB 貼文排版）完全在你的瀏覽器中運行，資料不會離開你的裝置。圖片、影片和 YouTube 工具需要在我們的伺服器上處理，但所有上傳的檔案在處理完成後會立即刪除。我們不會儲存你的資料。",
     "authorTitle": "關於作者",
     "authorGreeting": "Hi，我是 Hao",
-    "authorBio": "一人公司創辦人，用 AI 打造實用工具。離開 14 年工程師生涯後，我相信有能力的人不需要被公司綁住，也能創造價值。",
+    "authorBio": "14 年產品經理與數據分析背景。2025 年開始用 AI 做產品 — 從 SaaS、Chrome Extension 到這個工具站，全部透過 Agentic Coding 完成，沒寫過一行傳統程式碼。",
+    "authorBio2": "Neatoolkit 是我自己每天在用的工具。台灣現有的工具站廣告太多，所以自己做了一套乾淨的。",
     "otherWorksTitle": "其他作品",
     "otherWorks": {
       "airaTitle": "AIResumeAdvisor",

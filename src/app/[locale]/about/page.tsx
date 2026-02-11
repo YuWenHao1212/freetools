@@ -108,6 +108,9 @@ export default async function AboutPage({
                 <p className="mt-2 leading-relaxed text-ink-600">
                   {t("authorBio")}
                 </p>
+                <p className="mt-2 leading-relaxed text-ink-600">
+                  {t("authorBio2")}
+                </p>
                 <SocialLinks className="mt-4" />
               </div>
             </div>

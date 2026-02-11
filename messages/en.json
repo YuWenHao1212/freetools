@@ -667,7 +667,8 @@
     "howContent": "Text tools (font generator, FB post formatter) run entirely in your browser — nothing leaves your device. Image, video, and YouTube tools are processed on our servers, but all uploaded files are deleted immediately after processing. We do not store your data.",
     "authorTitle": "About the Author",
     "authorGreeting": "Hi, I'm Hao",
-    "authorBio": "Solo founder building practical tools with AI. After 14 years as an engineer, I believe capable people don't need to be tied to a company to create value.",
+    "authorBio": "14 years in product management and data analytics. Started building products with AI in 2025 — from SaaS to Chrome Extension to this toolkit, all through Agentic Coding, without writing a single line of traditional code.",
+    "authorBio2": "Neatoolkit is a set of tools I use every day. Existing tool sites in Taiwan are cluttered with ads, so I built a clean one myself.",
     "otherWorksTitle": "Other Projects",
     "otherWorks": {
       "airaTitle": "AIResumeAdvisor",
