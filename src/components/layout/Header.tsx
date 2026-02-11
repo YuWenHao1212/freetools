@@ -56,7 +56,6 @@ export default async function Header() {
       active: true,
       subItems: textToolItems,
     },
-    { href: "#", label: t("careerTools") },
   ];
 
   return (

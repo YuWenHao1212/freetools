@@ -44,6 +44,12 @@
     "madeWith": "Made with",
     "by": "by Yu-Wen Hao"
   },
+  "MoreByWenhao": {
+    "sectionTitle": "More by Wenhao",
+    "airaTitle": "AIResumeAdvisor",
+    "airaDescription": "AI 驅動的履歷診斷工具 — 找出問題，不只美化",
+    "airaCta": "免費試用"
+  },
   "MdToFb": {
     "title": "Facebook 貼文排版工具",
     "subtitle": "臉書貼文排版 — 粗體、斜體、特殊字體、換行保留，一鍵複製貼上",
@@ -659,10 +665,20 @@
     "whyContent": "市面上大多數「免費」線上工具其實並不免費。它們會加浮水印、要求註冊，或把核心功能鎖在付費牆後面。Neatoolkit 不同：每個工具都真正免費，不需要帳號、沒有浮水印、沒有隱藏費用。",
     "howTitle": "運作方式",
     "howContent": "文字工具（特殊字體產生器、FB 貼文排版）完全在你的瀏覽器中運行，資料不會離開你的裝置。圖片、影片和 YouTube 工具需要在我們的伺服器上處理，但所有上傳的檔案在處理完成後會立即刪除。我們不會儲存你的資料。",
-    "whoTitle": "誰做的？",
-    "whoContent": "Neatoolkit 由居住在台灣的獨立開發者 Yu-Wen Hao 打造和維護。如果你有任何建議或回饋，歡迎聯繫。",
-    "contactLabel": "聯絡信箱",
-    "contactEmail": "hi@neatoolkit.com"
+    "authorTitle": "關於作者",
+    "authorGreeting": "Hi，我是 Hao",
+    "authorBio": "一人公司創辦人，用 AI 打造實用工具。離開 14 年工程師生涯後，我相信有能力的人不需要被公司綁住，也能創造價值。",
+    "otherWorksTitle": "其他作品",
+    "otherWorks": {
+      "airaTitle": "AIResumeAdvisor",
+      "airaDescription": "AI 履歷診斷工具",
+      "blogTitle": "個人部落格",
+      "blogDescription": "AI、開發與生產力"
+    },
+    "collaborateTitle": "合作聯繫",
+    "collaborateContent": "歡迎洽談合作、回饋建議，或任何交流。",
+    "contactEmail": "hi@neatoolkit.com",
+    "builtWith": "Built with Next.js, Tailwind CSS & Vercel"
   },
   "Privacy": {
     "title": "隱私權政策",

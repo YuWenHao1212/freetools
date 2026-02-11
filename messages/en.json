@@ -44,6 +44,12 @@
     "madeWith": "Made with",
     "by": "by Yu-Wen Hao"
   },
+  "MoreByWenhao": {
+    "sectionTitle": "More by Wenhao",
+    "airaTitle": "AIResumeAdvisor",
+    "airaDescription": "AI-powered resume diagnostics — find problems, not just polish",
+    "airaCta": "Try Free"
+  },
   "MdToFb": {
     "title": "Facebook Post Formatter",
     "subtitle": "Generate bold text, italic & special fonts for Facebook — preserves line breaks, one-click copy",
@@ -659,10 +665,20 @@
     "whyContent": "Most \"free\" online tools are free in name only. They add watermarks, require signups, or lock core features behind paywalls. Neatoolkit is different: every tool is genuinely free, with no accounts, no watermarks, and no hidden costs.",
     "howTitle": "How It Works",
     "howContent": "Text tools (font generator, FB post formatter) run entirely in your browser — nothing leaves your device. Image, video, and YouTube tools are processed on our servers, but all uploaded files are deleted immediately after processing. We do not store your data.",
-    "whoTitle": "Who Built This?",
-    "whoContent": "Neatoolkit is built and maintained by Yu-Wen Hao, a solo developer based in Taiwan. If you have feedback or suggestions, feel free to reach out.",
-    "contactLabel": "Contact",
-    "contactEmail": "hi@neatoolkit.com"
+    "authorTitle": "About the Author",
+    "authorGreeting": "Hi, I'm Hao",
+    "authorBio": "Solo founder building practical tools with AI. After 14 years as an engineer, I believe capable people don't need to be tied to a company to create value.",
+    "otherWorksTitle": "Other Projects",
+    "otherWorks": {
+      "airaTitle": "AIResumeAdvisor",
+      "airaDescription": "AI resume diagnostics tool",
+      "blogTitle": "Personal Blog",
+      "blogDescription": "AI, development & productivity"
+    },
+    "collaborateTitle": "Get in Touch",
+    "collaborateContent": "Open to collaborations, feedback, or just a chat.",
+    "contactEmail": "hi@neatoolkit.com",
+    "builtWith": "Built with Next.js, Tailwind CSS & Vercel"
   },
   "Privacy": {
     "title": "Privacy Policy",
