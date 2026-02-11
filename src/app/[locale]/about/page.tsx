@@ -73,14 +73,14 @@ export default async function AboutPage({
             <h2 className="mt-12 font-serif text-xl font-bold text-ink-900 md:text-2xl">
               {t("whyTitle")}
             </h2>
-            <p className="mt-3 leading-relaxed text-ink-600">
+            <p className="mt-3 text-lg leading-relaxed text-ink-600">
               {t("whyContent")}
             </p>
 
             <h2 className="mt-12 font-serif text-xl font-bold text-ink-900 md:text-2xl">
               {t("howTitle")}
             </h2>
-            <p className="mt-3 leading-relaxed text-ink-600">
+            <p className="mt-3 text-lg leading-relaxed text-ink-600">
               {t("howContent")}
             </p>
 
@@ -102,10 +102,10 @@ export default async function AboutPage({
                 />
               </div>
               <div>
-                <p className="leading-relaxed text-ink-600">
+                <p className="text-lg leading-relaxed text-ink-600">
                   {t("authorBio")}
                 </p>
-                <p className="mt-2 leading-relaxed text-ink-600">
+                <p className="mt-2 text-lg leading-relaxed text-ink-600">
                   {t("authorBio2")}
                 </p>
                 <SocialLinks className="mt-4" />
@@ -141,10 +141,10 @@ export default async function AboutPage({
             <h2 className="mt-14 font-serif text-xl font-bold text-ink-900 md:text-2xl">
               {t("collaborateTitle")}
             </h2>
-            <p className="mt-3 leading-relaxed text-ink-600">
+            <p className="mt-3 text-lg leading-relaxed text-ink-600">
               {t("collaborateContent")}
             </p>
-            <p className="mt-3 text-ink-600">
+            <p className="mt-3 text-lg text-ink-600">
               <a
                 href={`mailto:${t("contactEmail")}`}
                 className="text-link hover:text-link-hover"
