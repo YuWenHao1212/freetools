@@ -38,18 +38,14 @@ describe("fetchWithRetry", () => {
     expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 
-  it("retries on 503 and succeeds on second attempt", async () => {
-    vi.mocked(global.fetch)
-      .mockResolvedValueOnce(jsonResponse(503))
-      .mockResolvedValueOnce(jsonResponse(200, { ok: true }));
+  it("does not retry on 503 (handled by client-side warmup retry)", async () => {
+    vi.mocked(global.fetch).mockResolvedValueOnce(jsonResponse(503));
 
-    const promise = fetchWithRetry(TEST_URL, TEST_INIT, FAST_OPTIONS);
-    await vi.advanceTimersByTimeAsync(10);
-    const response = await promise;
+    const response = await fetchWithRetry(TEST_URL, TEST_INIT, FAST_OPTIONS);
 
-    expect(response.status).toBe(200);
-    expect(global.fetch).toHaveBeenCalledTimes(2);
-    expect(console.warn).toHaveBeenCalledOnce();
+    expect(response.status).toBe(503);
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(console.warn).not.toHaveBeenCalled();
   });
 
   it("retries on 502 and succeeds on second attempt", async () => {
@@ -131,9 +127,9 @@ describe("fetchWithRetry", () => {
 
   it("returns last retryable response after all retries exhausted", async () => {
     vi.mocked(global.fetch)
-      .mockResolvedValueOnce(jsonResponse(503))
-      .mockResolvedValueOnce(jsonResponse(503))
-      .mockResolvedValueOnce(jsonResponse(503));
+      .mockResolvedValueOnce(jsonResponse(502))
+      .mockResolvedValueOnce(jsonResponse(502))
+      .mockResolvedValueOnce(jsonResponse(502));
 
     const promise = fetchWithRetry(TEST_URL, TEST_INIT, FAST_OPTIONS);
     await vi.advanceTimersByTimeAsync(10); // first retry delay
@@ -141,7 +137,7 @@ describe("fetchWithRetry", () => {
     const response = await promise;
 
     // On the last attempt, retryable status is returned as-is
-    expect(response.status).toBe(503);
+    expect(response.status).toBe(502);
     expect(global.fetch).toHaveBeenCalledTimes(3);
   });
 
@@ -191,8 +187,8 @@ describe("fetchWithRetry", () => {
 
   it("uses exponential backoff delay", async () => {
     vi.mocked(global.fetch)
-      .mockResolvedValueOnce(jsonResponse(503))
-      .mockResolvedValueOnce(jsonResponse(503))
+      .mockResolvedValueOnce(jsonResponse(502))
+      .mockResolvedValueOnce(jsonResponse(502))
       .mockResolvedValueOnce(jsonResponse(200));
 
     const promise = fetchWithRetry(TEST_URL, TEST_INIT, {

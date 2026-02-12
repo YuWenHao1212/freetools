@@ -489,6 +489,7 @@
     "download": "Download .txt",
     "copied": "Copied!",
     "loading": "Fetching subtitles...",
+    "warmingUp": "Server is warming up, retrying automatically...",
     "noSubtitles": "No subtitles available for this video",
     "invalidUrl": "Please enter a valid YouTube link",
     "error": "Failed to fetch subtitles. Please try again.",
@@ -499,7 +500,9 @@
       "videoUnavailable": "Video is unavailable",
       "fetchFailed": "Failed to fetch subtitles. Please try again later.",
       "tooManyRequests": "To keep this service free for everyone, your daily quota has been reached. It resets automatically tomorrow.",
-      "durationExceeded": "This video exceeds the 60-minute limit. Please try a shorter video."
+      "durationExceeded": "This video exceeds the 60-minute limit. Please try a shorter video.",
+      "serverWarmingUp": "Server is warming up, please wait a moment and try again.",
+      "requestTimeout": "Request timed out. The server may be busy — please try again."
     },
     "durationWarningTitle": "Video Duration Limit",
     "durationWarningOk": "OK",
@@ -542,6 +545,7 @@
     "urlPlaceholder": "Paste YouTube video link",
     "generateSummary": "Generate Summary",
     "loading": "AI is generating summary...",
+    "warmingUp": "Server is warming up, retrying automatically...",
     "copyAll": "Copy Summary",
     "copied": "Copied!",
     "regenerate": "Regenerate",
@@ -556,7 +560,9 @@
       "videoUnavailable": "Video is unavailable",
       "fetchFailed": "Failed to fetch subtitles. Please try again later.",
       "tooManyRequests": "To keep this service free for everyone, your daily quota has been reached. It resets automatically tomorrow.",
-      "durationExceeded": "This video exceeds the 60-minute limit. Please try a shorter video."
+      "durationExceeded": "This video exceeds the 60-minute limit. Please try a shorter video.",
+      "serverWarmingUp": "Server is warming up, please wait a moment and try again.",
+      "requestTimeout": "Request timed out. The server may be busy — please try again."
     },
     "durationWarningTitle": "Video Duration Limit",
     "durationWarningOk": "OK",
@@ -600,6 +606,7 @@
     "selectTargetLanguage": "Target Language",
     "translate": "Translate Subtitles",
     "loading": "AI is translating...",
+    "warmingUp": "Server is warming up, retrying automatically...",
     "preview": "Translation Preview",
     "viewFull": "View Full Translation",
     "copyAll": "Copy All",
@@ -613,7 +620,9 @@
       "videoUnavailable": "Video is unavailable",
       "fetchFailed": "Failed to fetch subtitles. Please try again later.",
       "tooManyRequests": "To keep this service free for everyone, your daily quota has been reached. It resets automatically tomorrow.",
-      "durationExceeded": "This video exceeds the 60-minute limit. Please try a shorter video."
+      "durationExceeded": "This video exceeds the 60-minute limit. Please try a shorter video.",
+      "serverWarmingUp": "Server is warming up, please wait a moment and try again.",
+      "requestTimeout": "Request timed out. The server may be busy — please try again."
     },
     "durationWarningTitle": "Video Duration Limit",
     "durationWarningOk": "OK",

@@ -489,6 +489,7 @@
     "download": "下載 .txt",
     "copied": "已複製！",
     "loading": "正在取得字幕...",
+    "warmingUp": "伺服器正在啟動中，自動重試中...",
     "noSubtitles": "此影片沒有可用的字幕",
     "invalidUrl": "請輸入有效的 YouTube 連結",
     "error": "取得字幕失敗，請重試",
@@ -499,7 +500,9 @@
       "videoUnavailable": "影片無法存取",
       "fetchFailed": "取得字幕失敗，請稍後再試",
       "tooManyRequests": "為確保所有人都能使用，每日免費額度已用完，明天將自動恢復",
-      "durationExceeded": "此影片超過 60 分鐘，無法處理。請選擇較短的影片。"
+      "durationExceeded": "此影片超過 60 分鐘，無法處理。請選擇較短的影片。",
+      "serverWarmingUp": "伺服器正在啟動中，請稍後再試",
+      "requestTimeout": "請求逾時，伺服器可能忙碌中，請稍後再試"
     },
     "durationWarningTitle": "影片長度超過限制",
     "durationWarningOk": "我知道了",
@@ -542,6 +545,7 @@
     "urlPlaceholder": "貼上 YouTube 影片連結",
     "generateSummary": "產生摘要",
     "loading": "AI 正在產生摘要...",
+    "warmingUp": "伺服器正在啟動中，自動重試中...",
     "copyAll": "複製摘要",
     "copied": "已複製！",
     "regenerate": "重新產生",
@@ -556,7 +560,9 @@
       "videoUnavailable": "影片無法存取",
       "fetchFailed": "取得字幕失敗，請稍後再試",
       "tooManyRequests": "為確保所有人都能使用，每日免費額度已用完，明天將自動恢復",
-      "durationExceeded": "此影片超過 60 分鐘，無法處理。請選擇較短的影片。"
+      "durationExceeded": "此影片超過 60 分鐘，無法處理。請選擇較短的影片。",
+      "serverWarmingUp": "伺服器正在啟動中，請稍後再試",
+      "requestTimeout": "請求逾時，伺服器可能忙碌中，請稍後再試"
     },
     "durationWarningTitle": "影片長度超過限制",
     "durationWarningOk": "我知道了",
@@ -600,6 +606,7 @@
     "selectTargetLanguage": "翻譯目標語言",
     "translate": "翻譯字幕",
     "loading": "AI 正在翻譯...",
+    "warmingUp": "伺服器正在啟動中，自動重試中...",
     "preview": "翻譯預覽",
     "viewFull": "查看完整翻譯",
     "copyAll": "複製全文",
@@ -613,7 +620,9 @@
       "videoUnavailable": "影片無法存取",
       "fetchFailed": "取得字幕失敗，請稍後再試",
       "tooManyRequests": "為確保所有人都能使用，每日免費額度已用完，明天將自動恢復",
-      "durationExceeded": "此影片超過 60 分鐘，無法處理。請選擇較短的影片。"
+      "durationExceeded": "此影片超過 60 分鐘，無法處理。請選擇較短的影片。",
+      "serverWarmingUp": "伺服器正在啟動中，請稍後再試",
+      "requestTimeout": "請求逾時，伺服器可能忙碌中，請稍後再試"
     },
     "durationWarningTitle": "影片長度超過限制",
     "durationWarningOk": "我知道了",

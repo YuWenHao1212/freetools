@@ -95,12 +95,66 @@ export async function fetchDirectApi(
     clearTimeout(timeoutId);
     if (error instanceof ApiError) throw error;
     if (error instanceof DOMException && error.name === "AbortError") {
-      throw new ApiError("SERVER_WARMING_UP", 408);
+      throw new ApiError("REQUEST_TIMEOUT", 408);
     }
     const msg =
       error instanceof Error ? error.message : "Unknown error";
     throw new ApiError(`Network error: ${msg}`, 0);
   }
+}
+
+function delay(ms: number, signal?: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) {
+      reject(signal.reason);
+      return;
+    }
+    const timeoutId = setTimeout(resolve, ms);
+    signal?.addEventListener("abort", () => {
+      clearTimeout(timeoutId);
+      reject(signal.reason);
+    }, { once: true });
+  });
+}
+
+interface WarmupRetryOptions extends FetchApiOptions {
+  maxWarmupRetries?: number;
+  warmupDelayMs?: number;
+  onWarmupRetry?: (attempt: number, maxRetries: number) => void;
+}
+
+export async function fetchApiWithWarmupRetry(
+  path: string,
+  body: FormData | string | null,
+  options: WarmupRetryOptions = {},
+): Promise<Response> {
+  const {
+    maxWarmupRetries = 3,
+    warmupDelayMs = 5000,
+    onWarmupRetry,
+    ...fetchOptions
+  } = options;
+
+  for (let attempt = 0; attempt <= maxWarmupRetries; attempt++) {
+    try {
+      return await fetchApi(path, body, fetchOptions);
+    } catch (error) {
+      const isWarmup =
+        error instanceof ApiError && error.message === "SERVER_WARMING_UP";
+      if (isWarmup && attempt < maxWarmupRetries) {
+        onWarmupRetry?.(attempt + 1, maxWarmupRetries);
+        try {
+          await delay(warmupDelayMs, fetchOptions.signal);
+        } catch {
+          throw new ApiError("REQUEST_TIMEOUT", 408);
+        }
+        continue;
+      }
+      throw error;
+    }
+  }
+
+  throw new ApiError("SERVER_WARMING_UP", 503);
 }
 
 export async function fetchApi(
@@ -149,7 +203,7 @@ export async function fetchApi(
     clearTimeout(timeoutId);
     if (error instanceof ApiError) throw error;
     if (error instanceof DOMException && error.name === "AbortError") {
-      throw new ApiError("SERVER_WARMING_UP", 408);
+      throw new ApiError("REQUEST_TIMEOUT", 408);
     }
     throw new ApiError("Network error. Please check your connection.", 0);
   }

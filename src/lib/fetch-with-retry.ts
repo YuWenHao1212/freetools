@@ -4,7 +4,7 @@ interface FetchWithRetryOptions {
   baseDelayMs?: number;
 }
 
-const RETRYABLE_STATUS_CODES = new Set([502, 503, 504]);
+const RETRYABLE_STATUS_CODES = new Set([502, 504]);
 
 function isRetryableError(error: unknown): boolean {
   if (error instanceof TypeError) return true;

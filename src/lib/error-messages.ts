@@ -5,6 +5,8 @@ const API_ERROR_KEYS: Record<string, string> = {
   "Video is unavailable": "apiErrors.videoUnavailable",
   "Too many requests. Please try again later.": "apiErrors.tooManyRequests",
   "Video exceeds 60 minute duration limit": "apiErrors.durationExceeded",
+  SERVER_WARMING_UP: "apiErrors.serverWarmingUp",
+  REQUEST_TIMEOUT: "apiErrors.requestTimeout",
 };
 
 export function getErrorMessageKey(apiMessage: string): string | null {

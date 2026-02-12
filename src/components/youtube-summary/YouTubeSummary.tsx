@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import ReactMarkdown from "react-markdown";
-import { fetchApi, ApiError } from "@/lib/api";
+import { fetchApiWithWarmupRetry, ApiError } from "@/lib/api";
 import { getErrorMessageKey } from "@/lib/error-messages";
 import { getCachedTranscript } from "@/lib/youtube-utils";
 import TurnstileWidget from "@/components/shared/TurnstileWidget";
@@ -34,6 +34,8 @@ export default function YouTubeSummary() {
   const [captchaRequired, setCaptchaRequired] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [durationWarning, setDurationWarning] = useState(false);
+  const [isWarmingUp, setIsWarmingUp] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   // Restore URL and cached result from sessionStorage on mount
   useEffect(() => {
@@ -54,6 +56,7 @@ export default function YouTubeSummary() {
 
   // Reset result and status when URL changes
   const handleUrlChange = useCallback((url: string) => {
+    abortControllerRef.current?.abort();
     setVideoUrl(url);
     sessionStorage.setItem(SESSION_KEY, url);
     setResult(null);
@@ -61,6 +64,7 @@ export default function YouTubeSummary() {
     setError(null);
     setCaptchaRequired(false);
     setCaptchaToken(null);
+    setIsWarmingUp(false);
     sessionStorage.removeItem(RESULT_CACHE_KEY);
   }, []);
 
@@ -83,6 +87,10 @@ export default function YouTubeSummary() {
     setStatus("loading");
     setError(null);
 
+    abortControllerRef.current?.abort();
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     try {
       const headers: Record<string, string> = {};
       if (captchaToken) {
@@ -95,17 +103,23 @@ export default function YouTubeSummary() {
         body.transcript = cachedTranscript;
       }
 
-      const response = await fetchApi(
+      const response = await fetchApiWithWarmupRetry(
         "/api/youtube/summary",
         JSON.stringify(body),
-        { headers },
+        {
+          headers,
+          signal: controller.signal,
+          onWarmupRetry: () => setIsWarmingUp(true),
+        },
       );
 
+      setIsWarmingUp(false);
       const data: SummaryResult = await response.json();
       setResult(data);
       setStatus("done");
       sessionStorage.setItem(RESULT_CACHE_KEY, JSON.stringify(data));
     } catch (err) {
+      setIsWarmingUp(false);
       if (err instanceof ApiError && err.status === 403) {
         setCaptchaRequired(true);
         setStatus("idle");
@@ -187,7 +201,7 @@ export default function YouTubeSummary() {
       {status === "loading" && (
         <div className="flex flex-col items-center justify-center py-12">
           <div className="h-8 w-8 animate-spin rounded-full border-3 border-accent border-t-transparent" />
-          <p className="mt-4 text-sm text-ink-600">{t("loading")}</p>
+          <p className="mt-4 text-sm text-ink-600">{isWarmingUp ? t("warmingUp") : t("loading")}</p>
         </div>
       )}
 

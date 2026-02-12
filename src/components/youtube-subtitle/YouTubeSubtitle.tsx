@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { fetchApi, ApiError } from "@/lib/api";
+import { fetchApi, fetchApiWithWarmupRetry, ApiError } from "@/lib/api";
 import { getErrorMessageKey } from "@/lib/error-messages";
 import FullContentModal from "@/components/shared/FullContentModal";
 import TurnstileWidget from "@/components/shared/TurnstileWidget";
@@ -69,6 +69,8 @@ export default function YouTubeSubtitle() {
   const [captchaRequired, setCaptchaRequired] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [durationWarning, setDurationWarning] = useState(false);
+  const [isWarmingUp, setIsWarmingUp] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   // Restore URL and cached result from sessionStorage on mount
   useEffect(() => {
@@ -89,6 +91,7 @@ export default function YouTubeSubtitle() {
   }, []);
 
   const handleUrlChange = useCallback((url: string) => {
+    abortControllerRef.current?.abort();
     setVideoUrl(url);
     sessionStorage.setItem(SESSION_KEY, url);
     setResult(null);
@@ -96,6 +99,7 @@ export default function YouTubeSubtitle() {
     setError("");
     setCaptchaRequired(false);
     setCaptchaToken(null);
+    setIsWarmingUp(false);
     sessionStorage.removeItem(RESULT_CACHE_KEY);
   }, []);
 
@@ -118,22 +122,31 @@ export default function YouTubeSubtitle() {
     setStatus("loading");
     setError("");
 
+    abortControllerRef.current?.abort();
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     try {
       const headers: Record<string, string> = {};
       if (captchaToken) {
         headers["x-turnstile-token"] = captchaToken;
       }
 
-      const response = await fetchApi(
+      const response = await fetchApiWithWarmupRetry(
         "/api/youtube/subtitle",
         JSON.stringify({
           url: trimmed,
           language: selectedLanguage || undefined,
           include_timestamps: showTimestamps,
         }),
-        { headers },
+        {
+          headers,
+          signal: controller.signal,
+          onWarmupRetry: () => setIsWarmingUp(true),
+        },
       );
 
+      setIsWarmingUp(false);
       const data: SubtitleResult = await response.json();
       setResult(data);
       setStatus("done");
@@ -144,6 +157,7 @@ export default function YouTubeSubtitle() {
         setSelectedLanguage(data.language);
       }
     } catch (err) {
+      setIsWarmingUp(false);
       if (err instanceof ApiError && err.status === 403) {
         setCaptchaRequired(true);
         setStatus("idle");
@@ -320,7 +334,7 @@ export default function YouTubeSubtitle() {
       {status === "loading" && (
         <div className="flex flex-col items-center justify-center py-12">
           <div className="h-8 w-8 animate-spin rounded-full border-3 border-accent border-t-transparent" />
-          <p className="mt-4 text-sm text-ink-600">{t("loading")}</p>
+          <p className="mt-4 text-sm text-ink-600">{isWarmingUp ? t("warmingUp") : t("loading")}</p>
         </div>
       )}
 
