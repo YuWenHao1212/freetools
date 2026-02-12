@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import ReactMarkdown from "react-markdown";
 import { fetchApi, ApiError } from "@/lib/api";
 import { getErrorMessageKey } from "@/lib/error-messages";
+import { getCachedTranscript } from "@/lib/youtube-utils";
 import TurnstileWidget from "@/components/shared/TurnstileWidget";
 import WarningModal from "@/components/shared/WarningModal";
 import VideoInfoCard from "@/components/shared/VideoInfoCard";
@@ -88,9 +89,15 @@ export default function YouTubeSummary() {
         headers["x-turnstile-token"] = captchaToken;
       }
 
+      const cachedTranscript = getCachedTranscript(trimmed);
+      const body: Record<string, string> = { url: trimmed };
+      if (cachedTranscript) {
+        body.transcript = cachedTranscript;
+      }
+
       const response = await fetchApi(
         "/api/youtube/summary",
-        JSON.stringify({ url: trimmed }),
+        JSON.stringify(body),
         { headers },
       );
 

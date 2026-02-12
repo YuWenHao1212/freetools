@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { fetchApi, ApiError } from "@/lib/api";
 import { getErrorMessageKey } from "@/lib/error-messages";
+import { getCachedTranscript } from "@/lib/youtube-utils";
 import TurnstileWidget from "@/components/shared/TurnstileWidget";
 import FullContentModal from "@/components/shared/FullContentModal";
 import WarningModal from "@/components/shared/WarningModal";
@@ -87,9 +88,18 @@ export default function YouTubeTranslate() {
         headers["x-turnstile-token"] = captchaToken;
       }
 
+      const cachedTranscript = getCachedTranscript(videoUrl);
+      const body: Record<string, string> = {
+        url: videoUrl,
+        target_language: targetLanguage,
+      };
+      if (cachedTranscript) {
+        body.transcript = cachedTranscript;
+      }
+
       const response = await fetchApi(
         "/api/youtube/translate",
-        JSON.stringify({ url: videoUrl, target_language: targetLanguage }),
+        JSON.stringify(body),
         { headers },
       );
 
