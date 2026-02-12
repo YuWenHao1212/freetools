@@ -1,5 +1,8 @@
 # Neatoolkit Launch Day Plan — 2026-02-11
 
+> **Status: LAUNCHED** — 2026-02-11 全部完成，neatoolkit.com 已正式上線。
+> FB 貼文於 2026-02-12 發布。
+
 ## Overview
 
 Neatoolkit 正式上線前的最後一哩路。三個 Agent 平行作業，無相互依賴。
@@ -201,33 +204,33 @@ TinyWow 是一個成功的免費線上工具網站，首頁用「分類卡片 �
 
 ---
 
-### Task 3C: GSC 提交
+### Task 3C: GSC 提交 ✅ (Agent 1 + Agent 3)
 
 **目標**：讓 Google 開始收錄 neatoolkit.com。
 
-**步驟**：
-1. 登入 Google Search Console
-2. 新增資源：`https://neatoolkit.com`
-3. DNS 驗證（或 HTML 驗證）
-4. 提交 sitemap：`https://neatoolkit.com/sitemap.xml`
+**完成步驟**：
+1. ✅ Agent 1 建立 `src/app/sitemap.ts`（動態產生所有頁面 URL）
+2. ✅ Agent 1 加入 GSC HTML meta 驗證標記到 `layout.tsx`
+3. ✅ Agent 3 在 GSC 驗證通過
+4. ✅ Agent 3 提交 sitemap：`https://neatoolkit.com/sitemap.xml`
 
-**✅ sitemap.ts 已由 Agent 1 建立** — `src/app/sitemap.ts`，動態產生所有頁面 URL（含法律頁面）
+**Commit**：`a8e8d10` chore: add Google Search Console verification meta tag
 
 ---
 
-### Task 3D: 最終驗證
+### Task 3D: 最終驗證 ✅ (Agent 3 完成)
 
-**依賴**：Agent 2 ✅ + Task 3A/3B ✅ 都已完成，等待 Agent 3 最終驗證。
+**依賴**：Agent 2 ✅ + Task 3A/3B ✅ 都已完成。
 
 Checklist：
-- [ ] 首頁在 desktop + mobile 看起來正確 — Agent 2 已實作並 push，待 Agent 3 視覺驗證
-- [ ] 漢堡選單可滾動 — Agent 2 已修復，待 Agent 3 驗證
-- [ ] 法律頁面 3 頁都能訪問（zh-TW + en）— Agent 1 已完成
-- [ ] Footer 連結正確 — Agent 1 已完成
-- [x] YouTube AI 摘要功能正常（Azure OpenAI）— Agent 1 已驗證
-- [x] YouTube 字幕翻譯功能正常（Azure OpenAI）— Agent 1 已驗證
-- [ ] GSC 已提交
-- [ ] 部署到 Vercel production
+- [x] 首頁在 desktop + mobile 看起來正確
+- [x] 漢堡選單可滾動
+- [x] 法律頁面 3 頁都能訪問（zh-TW + en）
+- [x] Footer 連結正確
+- [x] YouTube AI 摘要功能正常（Azure OpenAI）
+- [x] YouTube 字幕翻譯功能正常（Azure OpenAI）
+- [x] GSC 已提交
+- [x] 部署到 Vercel production
 
 ---
 
@@ -254,9 +257,24 @@ Checklist：
 - ✅ `src/app/sitemap.ts` 動態產生 sitemap（含所有工具 + 法律頁面）
 - ✅ Build 驗證通過
 
-### Task 1B: FB 貼文 — Neatoolkit 上線發表
+### Task 1E: Analytics 設定 ✅ (Agent 1)
 
-**依賴**：Agent 2 + Agent 3 驗證完成後。
+- ✅ GA4 tracking (`G-ZTE1LQFM2Q`) 加到 `layout.tsx`
+- ✅ Umami 自架到 Azure（PostgreSQL Flexible Server `neatoolkit-pg` + Container App `umami`）
+- ✅ Umami tracking 加到 `layout.tsx`（Website ID: `b660106e-893b-433a-b62e-8cda66940c23`）
+- ✅ yu-wenhao.com 也切換到 Azure Umami（Website ID: `dd3449c5-95e2-4c5e-8f19-ec99000f9010`）
+- ✅ Umami min-replicas 設為 0（省成本）
+
+**Commits**：
+- `8a7338e` feat: add GA4 and Umami analytics tracking
+- `a8e8d10` chore: add Google Search Console verification meta tag
+- `265ed58` chore: switch Umami analytics from Cloud to self-hosted Azure instance (personal-website)
+
+**Umami Dashboard**：`https://umami.livelystone-ee11a8ed.japaneast.azurecontainerapps.io`
+
+### Task 1B: FB 貼文 — Neatoolkit 上線發表 ✅ (2026-02-12 發布)
+
+**依賴**：所有技術工作已完成，待明天排版測試後發文。
 
 **角度**：Build in public — 「我做了一個免費工具站」
 
@@ -295,14 +313,80 @@ Checklist：
        ✅ Agent 2: 首頁重設計完成（c80f995）
        ✅ Agent 2: 漢堡選單修復完成
          ↓
-       Agent 3: GSC 提交
+       ✅ Agent 1: GA4 + Umami 自架 (Azure) 完成
          ↓
-       Agent 3: 最終驗證
+       ✅ Agent 3: GSC 驗證 + Sitemap 提交完成
          ↓
-       Agent 1: FB 貼文撰寫
+       ✅ Agent 3: 最終驗證通過
          ↓
-       🚀 上線 + 發文
+       ✅ Agent 1: yu-wenhao.com Umami 切換到 Azure
+         ↓
+       🚀 技術工作全部完成！
+         ↓
+       ✅ Agent 1: FB 貼文（2026-02-12 發布）
 ```
+
+---
+
+## 安全方案：JWT + Turnstile + Redis 直傳架構 ✅ (計畫外新增)
+
+**問題**：Vercel Hobby 方案 body limit 4.5MB，影片/圖片上傳被擋 → 413。
+
+**方案**：瀏覽器直接上傳到 Azure Container Apps，繞過 Vercel proxy。
+
+**架構流程**：
+```
+使用者點「開始處理」→ Turnstile 驗證
+    ↓
+瀏覽器 → Vercel POST /api/upload-token（驗 Turnstile → 簽 JWT）
+    ↓
+瀏覽器 → Azure POST /api/{endpoint}（帶 JWT + FormData 大檔案）
+    ↓
+Azure 驗 JWT 簽名 + 過期 + action 匹配 + Redis 單次使用 → 處理
+```
+
+**保護層**：
+- Turnstile：防 bot
+- JWT 5 分鐘過期 + jti 唯一識別
+- action 限制：壓縮 token 不能打去背
+- Redis 單次使用：同一 token 用兩次 → 401
+- CORS：只允許 neatoolkit.com
+- Rate limit：slowapi 仍在
+
+**影響範圍**：video/compress、video/to-gif、image/compress、image/remove-bg（4 個 upload endpoint）
+
+**修改檔案**（neatoolkit 前端）：
+- ✅ `src/app/api/upload-token/route.ts` — 新增，簽發 JWT
+- ✅ `src/lib/api.ts` — 新增 `fetchDirectApi()`
+- ✅ `src/components/shared/TurnstileWidget.tsx` — 修復 widget 重複 bug
+- ✅ 4 個元件改用 `fetchDirectApi` + Turnstile（VideoCompress, VideoToGif, ImageCompress, RemoveBackground）
+- ✅ 刪除 4 個舊 proxy routes（`src/app/api/video/compress/route.ts` 等）
+- ✅ `src/lib/proxy.ts` — 刪除 `proxyFormData()`
+
+**修改檔案**（neatoolkit-api 後端）：
+- ✅ `src/utils/token_validator.py` — 新增，JWT 驗證 + Upstash Redis 單次使用
+- ✅ `src/main.py` — APIKeyMiddleware 加 JWT 驗證路徑 + 修正 middleware 順序
+- ✅ `src/config.py` — 新增 UPLOAD_SECRET, PUBLIC_UPLOAD_PATHS, Upstash 設定
+- ✅ `src/services/ffmpeg_service.py` — ffmpeg SIGTERM 容錯
+- ✅ `requirements.txt` — 新增 PyJWT
+
+**Azure 設定**：
+- ✅ resiliency policy：request timeout 240s → 600s
+- ✅ 環境變數：UPLOAD_SECRET, UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN
+
+**Debug 歷程**（5 個 cascading bugs）：
+1. CORS 錯誤 → Starlette middleware 順序反轉，CORSMiddleware 必須最後加
+2. Token 驗證失敗 → Upstash REST API 用 path-based 語法非 query params
+3. Token 驗證失敗 → UPLOAD_SECRET Vercel/Azure 不一致
+4. Turnstile widget 重複 → useRef 修復 callback 穩定性
+5. ffmpeg SIGTERM → Azure 240s timeout + 檢查 output file 存在即成功
+
+**驗證結果**：
+- ✅ 18.9MB 影片壓縮成功
+- ✅ 93.9MB 影片壓縮成功（→ 6.2MB, -93%）
+- ✅ 93.9MB 影片轉 GIF 成功
+- ✅ 圖片壓縮 + AI 去背正常
+- ✅ YouTube 工具不受影響（仍走 Vercel proxy + API key）
 
 ---
 
