@@ -15,6 +15,33 @@ function getRedis(): Redis | null {
   return redis;
 }
 
+// Lua script: atomically increment and ensure TTL
+// Self-heals keys that lost their TTL (ttl === -1)
+const RATE_LIMIT_SCRIPT = `
+local count = redis.call('INCR', KEYS[1])
+if count == 1 then
+  redis.call('EXPIRE', KEYS[1], tonumber(ARGV[1]))
+end
+local ttl = redis.call('TTL', KEYS[1])
+if ttl == -1 then
+  redis.call('EXPIRE', KEYS[1], tonumber(ARGV[1]))
+end
+return {count, ttl}
+`;
+
+type RateLimitScriptResult = [number, number];
+
+let rateLimitScript: {
+  exec: (keys: string[], args: string[]) => Promise<RateLimitScriptResult>;
+} | null = null;
+
+function getRateLimitScript(client: Redis) {
+  if (!rateLimitScript) {
+    rateLimitScript = client.createScript<RateLimitScriptResult>(RATE_LIMIT_SCRIPT);
+  }
+  return rateLimitScript;
+}
+
 export type RateLimitStatus = "free" | "captcha" | "blocked";
 
 export async function checkRateLimit(
@@ -23,15 +50,14 @@ export async function checkRateLimit(
   try {
     const client = getRedis();
     if (!client) return "free";
+
     const key = `rate:${ip}`;
-    const count = await client.incr(key);
-    if (count === 1) {
-      await client.expire(key, RESET_SECONDS);
-    }
+    const script = getRateLimitScript(client);
+    const [count] = await script.exec([key], [String(RESET_SECONDS)]);
+
     if (count <= FREE_REQUESTS) return "free";
     if (count > CAPTCHA_REQUESTS) return "blocked";
 
-    // 4-10: check if already verified
     const verified = await client.get(`verified:${ip}`);
     if (verified) return "free";
 
